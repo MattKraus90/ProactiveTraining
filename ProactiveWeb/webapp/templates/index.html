@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+    <h1>Planspiel CEO</h1>
+    <h3 class="mt-3">{{ data.headline }}</h3>
+    <div class="card m-4">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="row justify-content-center mt-3">
+                <div class="col-md">
+                  <img src="{% static data.img1 %}" class="img-fluid">
+                </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="col-md">
+                  <div class="mt-3">{{ data.text1 }}</div>
+                  <div class="mt-3">{{ data.text2 }}</div>
+                  <div class="mt-3">{{ data.text3 }}</div>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="col-md">
+                  <img src="{% static data.img2 %}" class="img-fluid">
+                </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="col-md">
+                  <div class="mt-3">{{ data.text4 }}</div>
+                  <div class="mt-3">{{ data.text5 }}</div> 
+                </div>
+              </div>
+              <div class="row justify-content-center mt-5">
+                <div class="col-md-1">
+                  <a href="{% url 'personalData' %}" class="btn btn-primary">Start</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

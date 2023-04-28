@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+  <h1>Planspiel CEO</h1>
+  <h3 class="mt-3">{{ conv_data.text }} {{ tasks }}</h3>
+  <form id="myForm" method="post" action="{% url 'rate' page=page_number %}">
+    {% csrf_token %}
+    <div class="card m-4">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <h5 class="mt-3">{{ conv_data.points }}{{ points }}</h5>
+              <div class="row justify-content-center">
+                {% for item in task_data %}
+                  <div class="col-md-4 mb-4 mt-3">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <label class="label">Aufgabe {{ item.task }}</label>
+                      </div>
+                      <img class="card-img-top img-fluid custom-img" src="{% static item.path %}" alt="{{ item.task }}">
+                      <div class="card-footer text-center">
+                        <label class="label">Punkte: {{ item.points }}</label>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="text-center mt-3">
+                  {{ conv_data.explanation }}
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q1 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.0 }}">{{ conv_data.q11 }} {{ task_arr.0 }}?</label><br>
+                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.0 }}" name="Aufgabe{{ task_arr.0 }}" min="1" max="5" step="1" value="3" >
+                      </div>
+                      <div>
+                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.1 }}">{{ conv_data.q11 }} {{ task_arr.1 }}?</label><br>
+                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.1 }}" name="Aufgabe{{ task_arr.1 }}" min="1" max="5" step="1" value="3">
+                      </div>
+                      <div>
+                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.2 }}">{{ conv_data.q11 }} {{ task_arr.2 }}?</label><br>
+                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.2 }}" name="Aufgabe{{ task_arr.2 }}" min="1" max="5" step="1" value="3">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q2 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Trust">{{ conv_data.q21 }}</label><br>
+                        <input class="form-range" type="range" id="Trust" name="Trust" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q3 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Competence">{{ conv_data.q31 }}</label><br>
+                        <input class="form-range" type="range" id="Competence" name="Competence" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q4 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Predictability">{{ conv_data.q41 }}</label><br>
+                        <input class="form-range" type="range" id="Predictability" name="Predictability" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q5 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Reliability">{{ conv_data.q51 }}</label><br>
+                        <input class="form-range" type="range" id="Reliability" name="Reliability" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q6 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Control">Bitte wählen Sie das {{ check }} aus</label><br>
+                        <input class="form-range" type="range" id="Control" name="Control" min="1" max="5" step="1" value="3" >
+                        <div id="error-message"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q7 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Acceptance">{{ conv_data.q71 }}</label><br>
+                        <input class="form-range" type="range" id="Acceptance" name="Acceptance" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q8 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Satisfaction">{{ conv_data.q81 }}</label><br>
+                        <input class="form-range" type="range" id="Satisfaction" name="Satisfaction" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <label>{{ conv_data.q9 }}</label><br>
+                  <small>{{ conv_data.notice }}</small>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-11">
+                      <div>
+                        <label class="form-label mt-3" for="Annoyance">{{ conv_data.q91 }}</label><br>
+                        <input class="form-range" type="range" id="Annoyance" name="Annoyance" min="1" max="5" step="1" value="3" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-5">
+                <div class="col-md-1">
+                  <button id="submit-btn" class="btn btn-success" type="submit">Weiter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  const form = document.querySelector('#myForm');
+  const input = document.querySelector('#Control');
+  const errorMessage = document.querySelector('#error-message');
+  const submitBtn = document.querySelector('#submit-btn');
+
+  form.addEventListener('submit', event => {
+    event.preventDefault(); 
+
+    if (input.value !== '{{ check_num }}') {
+      errorMessage.textContent = 'Fehler: Bitte wählen Sie das {{ check }} aus';
+      return;
+    }
+
+    form.submit();
+  });
+</script>
+{% endblock content %}

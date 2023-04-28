@@ -1,0 +1,115 @@
+{
+  "1":{
+    "title": "Aufgabe 1: Standort",
+	  "description":"Ihr erster Schritt als CEO eines E-Automobil-Unternehmens ist es einen geeigneten Standort zu finden. Beachten Sie dabei, dass Ihre Wahl Einfluss auf die Wahl des Firmenimage sowie die Produktion hat.",
+    "message": "Bei dieser Aufgabe stehen Ihnen sozusagen alle Türen offen. Wählen Sie einen Standort mit dem Sie sich am meisten identifizieren können.",
+    "items": [
+      {"name": "A: München", "path": "imgs/sub1/optionA.jpg", "value": "1A", "characteristics": "hohe Attraktivität für Mitarbeiter, hohe Konkurrenzsituation und hohe Mieten"},
+      {"name": "B: Leipzig", "path": "imgs/sub1/optionB.jpg", "value": "1B", "characteristics": "mittlere Attraktivität für Mitarbeiter, mittlere Konkurrenzsituation und niedrige Mieten"},
+      {"name": "C: Hamburg", "path": "imgs/sub1/optionC.jpg", "value": "1C", "characteristics": "hohe Attraktivität für Mitarbeiter, niedrige Konkurrenzsituation und mittlere Mieten"}]
+  },
+  "2":{
+    "title": "Aufgabe 2: Firmenimage",
+	  "description":"Nun sollen Sie sich ein passendes Image für Ihr Unternehmen aussuchen. Beachten Sie erneut, dass Ihre Entscheidung weitreichenden Einfluss auf spätere Aufgaben hat, wie beispielweise auf die Wahl der Fahrzeugklassen, des Managements, oder auch auf zukünftige Kooperationen.",
+    "message": "Ihre Wahl sollte sich an Ihrem Standort orientieren. Entscheiden Sie sich für das Image, dessen Eigenschaften am besten zu Ihrem Standort passen.",
+    "items": [{"name": "A: Modern, dynamisch, fortschrittlich", "path": "imgs/sub2/optionA.png", "value": "2A", "characteristics": null},
+      {"name": "B: Sportlich, auffallend, kraftvoll", "path": "imgs/sub2/optionB.png", "value": "2B" , "characteristics": null},
+      {"name": "C: Familienfreundlich, naturverbunden, beständig", "path": "imgs/sub2/optionC.png", "value": "2C", "characteristics": null},
+      {"name": "D: Exklusiv, kostbar, stilbewusst", "path": "imgs/sub2/optionD.png", "value": "2D", "characteristics": null}]
+  },
+  "3":{
+    "title": "Aufgabe 3: Fahrzeugklassen",
+	  "description":"Grundlegend für ein Automobilunternehmen ist das Angebot an Fahrzeugklassen, da Sie hier unterschiedliche Zielgruppen an Kunden erreichen können. Ihre Wahl hat Einfluss auf Ihre Produktionsmöglichkeiten und auch Produkt-Neueinführungen müssen darauf abgestimmt sein.",
+    "message": "Um eine größtmögliche Anzahl an Kunden zu gewinnen, sollten Sie Ihre Wahl an das Firmenimage anpassen.",
+    "items": [{"name": "A: Kleinwagen, Kompaktwagen", "path": "imgs/sub3/optionA.jpg", "value": "3A", "characteristics": "Bürgernähe und großer Markt"},
+      {"name": "B: Oberklasse, Sportwagen", "path": "imgs/sub3/optionB.jpg", "value": "3B", "characteristics": "Teuer und exklusiver Markt"},
+      {"name": "C: Oberklasse, SUV", "path": "imgs/sub3/optionC.jpg", "value": "3C", "characteristics": "Teuer und exklusiver Markt"},
+      {"name": "D: Van, Kleinwagen", "path": "imgs/sub3/optionD.jpg", "value": "3D", "characteristics": "Bürgernah und flexibler Markt"},
+      {"name": "E: Kompaktwagen, Sportwagen", "path": "imgs/sub3/optionE.jpg", "value": "3E", "characteristics": "Mittelschichtansprechend und großer Markt"}]
+
+  },
+  "4":{
+    "title": "Aufgabe 4: Management",
+	  "description":"Ihre nächste Aufgabe ist es die Position des Managers Ihres Unternehmens zu besetzen. Dies ist eine besonders wichtige Wahl, da sie Auswirkungen auf zukünftige Entscheidungen bezüglich Wirtschaft, Forschung und Kooperation hat.",
+    "message": "Berücksichtigen Sie Bei Ihrer Wahl das gewählte Unternehmensimage.",
+    "items": [{"name": "A: Dirk", "path": "imgs/sub4/optionA.jpg", "value": "4A", "characteristics": "Führungsstark, mittlere Kompetenz und hohe Ergebnisorientierung"},
+      {"name": "B: Sabine", "path": "imgs/sub4/optionB.jpg", "value": "4B", "characteristics": "Perfektionistisch, hohe Kompetenz und mittlere Ergebnisorientierung"},
+      {"name": "C: Ben", "path": "imgs/sub4/optionC.jpg", "value": "4C", "characteristics": "Loyal, mittlere Kompetenz und mittlere Ergebnisorientierung"}]
+  },
+  "5":{
+    "title": "Aufgabe 5: Hausbank",
+	  "description":"Bei dieser Aufgabe stehen Sie vor der Wahl einer Hausbank, welche Ihnen finanzielle Unterstützung für Ihre Unternehmungen bereitstellt und Ihre Einnahmen verwaltet. Ihre Wahl ist unter anderem wichtig für zukünftige Geschehnisse, die Automobil-Produktion sowie mögliche Expansionen.",
+    "message": "Beachten Sie bei dieser Aufgabe die vorangegangene Wahl des Managements, da die Kommunikation mit der Bank hauptsächlich über Ihren Manager läuft. ",
+    "items": [{"name": "A: Athena-Bank", "path": "imgs/sub5/optionA.png", "value": "5A", "characteristics": "mittlere Kreditleistung, hohe Qualität im Bereich Cash Management und mittlere Beratungsqualität"},
+      {"name": "B: Wallace-Bank", "path": "imgs/sub5/optionB.png", "value": "5B", "characteristics": "hohe Kreditleistung, mittlere Qualität im Bereich Cash Management und niedrige Beratungsqualität"},
+      {"name": "C: NW-Bank", "path": "imgs/sub5/optionC.png", "value": "5C", "characteristics": "niedrige Kreditleistung, mittlere Qualität im Bereich Cash Management und hohe Beratungsqualität"},
+      {"name": "D: Gesellschafts-Bank", "path": "imgs/sub5/optionD.png", "value": "5D", "characteristics": "hohe Kreditleistung, niedrige Qualität im Bereich Cash Management und mittlere Beratungsqualität"}]
+  },
+  "6":{
+    "title": "Aufgabe 6: Produktion",
+	  "description":"Als Nächstes müssen Sie sich entscheiden welche Komponenten Sie selbst produzieren wollen bzw. welche Sie auslagern wollen. Hauptelemente der Produktion sind Karosserie, Batterie, Software und Innenausstattung. Mit einem 'ja' produzieren Sie selbst, mit einem 'nein' wird die jeweilige Komponente außer Haus produziert. Ihre Wahl hat Einfluss auf zukünftige Kooperationen.",
+    "message": "Beachten Sie, dass der Erfolg der Produktion maßgeblich vom Standort, der Fahrzeugklassen und der gewählten Bank abhängt.",
+    "items": [{"name": "A: Karosserie (ja), Batterie (ja), Software (nein), Innenausstattung (nein)", "path": "imgs/sub6/optionA.jpg", "value": "6A", "characteristics": "hohe Produktionskosten und hohe Innovationsmöglichkeiten"},
+      {"name": "B: Karosserie (ja), Batterie (nein), Software (ja), Innenausstattung (nein)", "path": "imgs/sub6/optionB.jpg", "value": "6B", "characteristics": "mittlere Produktionskosten und hohe Innovationsmöglichkeiten"},
+      {"name": "C: Karosserie (nein), Batterie (ja), Software (nein), Innenausstattung (nein)", "path": "imgs/sub6/optionC.jpg", "value": "6C", "characteristics": "geringe Produktionskosten und mittlere Innovationsmöglichkeiten"},
+      {"name": "D: Karosserie (nein), Batterie (ja), Software (ja), Innenausstattung (ja)", "path": "imgs/sub6/optionD.jpg", "value": "6D" , "characteristics": "hohe Produktionskosten und hohe Innovationsmöglichkeiten"},
+      {"name": "E: Karosserie (ja), Batterie (nein), Software (ja), Innenausstattung (ja)", "path": "imgs/sub6/optionE.jpg", "value": "6E", "characteristics": "hohe Produktionskosten und mittlere Innovationsmöglichkeiten"}]
+
+  },
+  "7":{
+    "title": "Aufgabe 7: Reaktion auf die Konkurrenz",
+	  "description":"Ein Konkurrenz-Unternehmen hat seine Fahrzeuge mit leistungsfähigeren Batterien ausgestattet und könnte Ihnen damit viele Kunden abwerben. Reagieren Sie mit einer geeigneten Maßnahme darauf um den Erfolg Ihres Unternehmens nicht zu gefährden.",
+    "message": "Achten Sie bei Ihrer Entscheidung, dass Sie im Einklang mit dem Firmenimage, dem Management und der Hausbank sein muss, um die Glaubwürdigkeit des Unternehmens zu sichern.",
+    "items": [{"name": "A: Preissenkung", "path": "imgs/sub7/optionA.jpg", "value": "7A", "characteristics": null},
+      {"name": "B: Einführung eines Car-Entertainment Systems", "path": "imgs/sub7/optionB.jpg", "value": "7B", "characteristics": null},
+      {"name": "C: Gründung eines Formel-E Teams", "path": "imgs/sub7/optionC.jpg", "value": "7C", "characteristics": null}]
+
+  },
+  "8":{
+    "title": "Aufgabe 8: Forschung",
+	  "description":"Um Ihre Position gegenüber der Konkurrenz zu stärken, sollten Sie in die Forschung investieren. Darauf aufbauend könnten sich ergänzende Kooperationen entwickeln.",
+    "message": "Berücksichtigen Sie bei der Wahl das Management sowie die Hausbank, da Sie finanziell abgesichert sein sollten.",
+    "items": [{"name": "A: Autonomes Fahren", "path": "imgs/sub8/optionA.jpg", "value": "8A", "characteristics": "hoher Forschungsaufwand und hoher Marktvorteil"},
+      {"name": "B: Batterielaufzeit", "path": "imgs/sub8/optionB.jpg", "value": "8B", "characteristics": "mittlerer Forschungsaufwand und mittlerer Marktvorteil"},
+      {"name": "C: Umweltfreundliche Herstellung", "path": "imgs/sub8/optionC.jpg", "value": "8C", "characteristics": "niedriger Forschungsaufwand und niedriger Marktvorteil"},
+      {"name": "D: Wasserstoffantrieb", "path": "imgs/sub8/optionD.jpg", "value": "8D", "characteristics": "hoher Forschungsaufwand und mittlerer Marktvorteil"}]
+  },
+  "9":{
+    "title": "Aufgabe 9: Kooperation",
+	  "description":"Außerdem können Sie Ihre Position am Markt durch eine geeignete Kooperation sichern. Hierfür gibt es zahlreiche Möglichkeiten, entsprechend der bisherigen Ausrichtung Ihres Unternehmens.",
+    "message": "Für Ihre Entscheidung bei dieser Aufgabe sollten Sie die bisherige Ausrichtung Ihres Unternehmens berücksichtigen. Dazu zählen Firmenimage, Management, Produktion sowie Forschung.",
+    "items": [{"name": "A: Carsharing", "path": "imgs/sub9/optionA.jpg", "value": "9A", "characteristics": null},
+      {"name": "B: Batterieentwicklung mit anderem Unternehmen", "path": "imgs/sub9/optionB.jpg", "value": "9B", "characteristics": null},
+      {"name": "C: Interieurausstattung durch berühmten Designer", "path": "imgs/sub9/optionC.jpg", "value": "9C", "characteristics": null},
+      {"name": "D: Duales Studium mit Universität", "path": "imgs/sub9/optionD.jpg", "value": "9D", "characteristics": null},
+      {"name": "E: Tuning mit spezialisierter Firma", "path": "imgs/sub9/optionE.jpg", "value": "9E", "characteristics": null}]
+  }
+  ,
+  "10":{
+    "title": "Aufgabe 10: Reaktion auf die Marktwirtschaft",
+	  "description":"Durch eine Rezession in der Wirtschaft ist es zu einer schwachen Konjunktur in diesem Jahr gekommen. Um Ihr Unternehmen stabil durch die Krise zu bringen müssen Sie eine geeignete Entscheidung treffen.",
+    "message": "Die Entscheidung bei dieser Aufgabe hängt vom Management und der Hausbank ab um mögliche Verluste abzufedern.",
+    "items": [{"name": "A: Mitarbeiter entlassen", "path": "imgs/sub10/optionA.jpg", "value": "10A", "characteristics": null},
+      {"name": "B: Produktion zurückfahren", "path": "imgs/sub10/optionB.jpg", "value": "10B", "characteristics": null},
+      {"name": "C: Weiteren Kredit bei Bank anfordern", "path": "imgs/sub10/optionC.jpg", "value": "10C", "characteristics": null}]
+  },
+  "11":{
+    "title": "Aufgabe 11: Produkteinführung",
+	  "description":"Sie sind ohne größere Probleme durch die Krise gekommen. Um nun neue wirtschaftliche Anreize zu setzen, wollen Sie ein neues Produkt auf den Markt bringen und Ihr Unternehmen erweitern.",
+    "message": "Beachten Sie bei Ihrer Wahl die bisherigen vertriebenen Fahrzeugklassen des Unternehmens. Je nach Fahrzeugklasse, hat Ihre Firma unterschiedliche Fachkenntnisse angehäuft.",
+    "items": [{"name": "A: E-Motorrad", "path": "imgs/sub11/optionA.jpg", "value": "11A", "characteristics": null},
+      {"name": "B: Limitierter Super-Sportwagen", "path": "imgs/sub11/optionB.jpg", "value": "11B", "characteristics": null},
+      {"name": "C: SUV mit Heimkinoanlage", "path": "imgs/sub11/optionC.jpg", "value": "11C", "characteristics": null},
+      {"name": "D: E-Buslinie", "path": "imgs/sub11/optionD.jpg", "value": "11D", "characteristics": null}]
+  },
+  "12":{
+    "title": "Aufgabe 12: Expansion",
+	  "description":"Die Produkteinführung war ein erster Schritt in die richtige Richtung und hat Ihnen weitere Gewinne eingebracht. Als letzter Schritt ist es nun an der Zeit Ihre Firma entsprechend zu erweitern.",
+    "message": "Achten Sie bei Ihrer Entscheidung, dass Sie Ihr Firmenimage wahren und Ihre Hausbank ausreichend für die Unternehmung ist.",
+    "items": [{"name": "A: Globalisierung", "path": "imgs/sub12/optionA.jpg", "value": "12A", "characteristics": null},
+      {"name": "B: Firmenkauf", "path": "imgs/sub12/optionB.jpg", "value": "12B", "characteristics": null},
+      {"name": "C: Energydrinks", "path": "imgs/sub12/optionC.jpg", "value": "12C", "characteristics": null},
+      {"name": "D: Vervielfachung der Verkaufsstandorte", "path": "imgs/sub12/optionD.jpg", "value": "12D", "characteristics": null},
+      {"name": "E: Kauf von Anteilen eines Fussballteams", "path": "imgs/sub12/optionE.jpg", "value": "12E", "characteristics": null}]
+  }
+}

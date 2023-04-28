@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+  <h1>Planspiel CEO</h1>
+    <div class="card m-4">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div>
+                <h3>{{ conv_data.text1 }}</h3>
+              </div>
+              <div class="mt-3">
+                <img src="{% static conv_data.gif %}"/>
+              </div>
+              <div class="text-center mt-3">
+                <b>{{ conv_data.text2 }}</b>{{ conv_data.text3 }}
+              </div>
+              <div class="text-center mt-3">
+                <b>{{ conv_data.text4 }}</b>
+              </div>
+              <div class="text-center mt-3">
+                Code: <b>{{ conv_data.code }}</b>
+              </div>
+              <div class="text-center mt-3">
+                {{ conv_data.text5 }}<br>
+                {{ sum_points }} / 210 Punkte
+              </div>
+              <div class="row justify-content-center">
+              {% for key, value in contex_data.items %}
+                <div class="col-md-4 mb-4 mt-3">
+                  <div class="card">
+                    <div class="card-header text-center">
+                      <label class="label">{{ value.title }}</label>
+                    </div>
+                    <img class="card-img-top img-fluid custom-img" src="{% static value.path %}" alt="{{ key }}">
+                    <div class="card-footer text-center">
+                      <label class="label">Punkte: {{ value.points }}</label>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

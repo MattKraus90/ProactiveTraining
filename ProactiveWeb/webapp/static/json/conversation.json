@@ -1,0 +1,128 @@
+{
+    "index":{
+        "headline": "Herzlich Willkommen!",
+        "img1": "imgs/BeraterNao.PNG",
+        "img2": "imgs/gameInterface.PNG",
+        "text1": "In diesem Rollenspiel schlüpfen Sie in die Rolle des Geschäftsführers (CEO) eines High-Tech Konzerns der elektrisch betriebene Automobile entwickelt, produziert und vertreibt. Ihr Ziel ist es dabei das Unternehmen durch geschicktes strategisches Handeln erfolgreich zu managen und den Gewinn zu maximieren. Hierbei müssen Sie jeweils schrittweise Entscheidungen treffen und Unternehmungen im Sinne des Konzerns planen, wie beispielsweise die Standortplanung oder das Personalmanagement.",
+        "text2": "Einzelne Entscheidungen ziehen Konsequenzen mit sich und wirken sich auf den Erfolg des Managements aus. Nach insgesamt 12 Prozessschritten wird der Erfolg Ihrer Handlungen bewertet. Aber keine Sorge, wir lassen Sie nicht alleine! Unterstützt werden Sie bei diesem Spiel von einem KI-getriebenen virtuellen Assistenten namens NAO, der die Unternehmungsberatung übernimmt. NAO kann Ihnen auf Nachfrage Vorschläge geben, oder sich aktiv in die Handlung einklinken. Um die Aktionen von NAO zu verbessern, bitten wir Sie nach jeweils 3 Aufgaben diverse Eigenschaften des Assistenten zu bewerten.",
+        "text3": "Im nachfolgenden Bild sehen Sie den Aufgabenbildschirm. Oben im Bild können Sie jeweils überprüfen um welche Aufgabe es sich handelt und erhalten dazu eine Aufgabenbeschreibung. Darunter befinden sich Ihre jeweiligen Auswahlmöglichkeiten mit Bild und welche Eigenschaften diese Möglichkeiten besitzen. Durch einfaches Klicken können Sie eine Auswahlmöglichkeit auswählen. Unterhalb der Auswahlmöglichkeiten befinden sich Ihre drei Aktionstasten: Hilfe, Vorschlag und Weiter. Der Hilfe-Button gibt Ihnen allgemeine Hilfe zur Aufgabenstellung. Mit einem Klick auf 'Vorschlag' können Sie die KI um einen Vorschlag bitten. Wenn eine Antwortmöglichkeit ausgewählt wurde, gelangen Sie durch einen Klick auf den Weiter-Button zur nachfolgenden Aufgabe.",
+        "text4": "Bitte beachten Sie, dass wir das Auswählen von Aktionsmöglichkeiten für 20 Sekunden blocken. Erst nach dieser Zeit können Sie eine Auswahl treffen oder eine Beratung von NAO in Anspruch nehmen. Der Grund hierfür liegt in der Berechnungsdauer der komplexen KI-Algorithmen. Durch diese Maßnahme kann garantiert werden, dass alle Berechnungen abgeschlossen sind. Nehmen Sie sich die Zeit um die Aufgabe in Ruhe durch zu lesen und sich für eine Auswahl zu entscheiden", 
+        "text5": "Bevor Sie jedoch mit dem Spiel beginnen, bitten wir Sie noch einen Fragebogen zu Ihrer Person auszufüllen. Ihre Daten werden natürlich anonymisiert und vertraulich behandelt. Die Dauer des Spiels und für die Beantwortung der Fragebögen liegt bei ca. 20 Minuten. Viel Spaß!"
+    },
+    "personalData":{
+        "headline": "Vorbefragung",
+        "text": "In diesem Abschnitt werden Ihnen einige Fragen zu Ihrer Person, sowie Ihrer Einstellung zu Maschinen gestellt",
+        "user_id": {
+            "text": "1. Bitte geben Sie Ihre Clickworker USER ID an"
+        },
+        "gender": {
+            "text": "2. Bitte geben Sie Ihr Geschlecht an",
+            "option": {
+                "1": "male",
+                "2": "female",
+                "3": "other"
+            }
+        },
+        "age": {
+            "text": "3. Bitte geben Sie Ihr Alter an"
+        },
+        "TA": {
+            "text": "4. Im folgenden Fragebogen fragen wir Sie nach Ihrer Beziehung zu technischen Systemen. Unter 'technischen Systemen' versteht man Apps und andere Software-Anwendungen sowie ganze digitale Geräte (z.B. Handy, Computer, Fernseher, Autonavigation). Bitte bewerten Sie die folgenden Aussagen",
+            "1": "Es macht mir Spaß, ein technisches System auszuprobieren",
+            "2": "Ich kenne die meisten Funktionen der technischen Systeme, die ich besitze",
+            "3": "Es fällt mir leicht, die Bedienung eines technischen Systems zu erlernen",
+            "4": "Technische Systeme erleichtern mir den Alltag",
+            "5": "Technische Systeme machen vieles umständlicher",
+            "6": "Technische Systeme verursachen Stress"
+        },
+        "PreTrust": {
+            "text": "5. Im folgenden Fragebogen fragen wir Sie nach Ihrer Erfahrung bezüglich automatisierten Systemen im Allgemeinen. Bitte bewerten Sie die folgenden Aussagen",
+            "1": "Normalerweise vertraue ich automatisierten Systemen, solange es keinen Grund gibt, dies nicht zu tun",
+            "2": "Meistens misstraue ich automatisierten Systemen",
+            "3": "Im Allgemeinen würde ich mich auf die Unterstützung durch automatisierte Systeme verlassen",
+            "4": "Ich neige dazu automatisierten System zu vertrauen",
+            "5": "Mir fällt es leicht, automatisierten Systemen bei der Ausführung ihrer Aufgaben zu vertrauen",
+            "6": "Es ist wahrscheinlich, dass ich einem automatisierten System vertraue, auch wenn ich nur wenig darüber weiß"
+        },
+        "Personality": {
+            "text": "6. Wie gut beschreiben die folgenden Aussagen Ihre Persönlichkeit?",
+            "1": "Ich bin eher zurückhaltend, reserviert",
+            "2": "Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen",
+            "3": "Ich bin bequem, neige zur Faulheit",
+            "4": "Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen",
+            "5": "Ich habe nur wenig künstlerisches Interesse",
+            "6": "Ich gehe aus mir heraus, bin gesellig",
+            "7": "Ich erledige Aufgaben gründlich",
+            "8": "Ich werde leicht nervös und unsicher",
+            "9": "Ich neige dazu, andere zu kritisieren",
+            "10": "Ich habe eine aktive Vorstellungskraft, bin fantasievoll"
+        },
+        "ExperienceEco": {
+            "text": "7. Im Folgenden wollen wir von Ihnen wissen welche Erfahrung Sie im Bereich Unternehmensführung bzw. Management besitzen",
+            "1": "Ich weiß wie Unternehmensführung funktioniert",
+            "2": "Ich würde mich als fähig im Management-Bereich betrachten",
+            "3": "Ich kenne mich mit Unternehmensberatung aus"
+        },
+        "notice": "Bitte geben Sie Ihre Zustimmung auf einer Skala von von 'stimme überhaupt nicht zu = --' bis 'stimme völlig zu = ++' für jede Aussage an. Die Felder dazwischen ermöglichen Ihnen eine Abstufung Ihrer Antworten."
+    },
+    "rate": {        
+        "3": {
+            "task_arr": [1,2,3],
+            "max_points": "30",
+            "tasks": "1-3",
+            "check": "+ (4. Punkt)",
+            "check_num": 4
+        },
+        "6": {
+            "task_arr": [4,5,6],
+            "max_points": "80",
+            "tasks": "4-6",
+            "check": "- (2. Punkt)",
+            "check_num": 2
+        },
+        "9": {
+            "task_arr": [7,8,9],
+            "max_points": "160",
+            "tasks": "7-9",
+            "check": "+ (4. Punkt)",
+            "check_num": 4
+        },
+        "12": {
+            "task_arr": [10,11,12],
+            "max_points": "210",
+            "tasks": "10-12",
+            "check": "- (2. Punkt)",
+            "check_num": 2
+        },
+        "text": "Bewertung der Unternehmensberatung für die Aufgaben",
+        "points": "Hier ist Ihre vorläufige Punktezahl: ",
+        "explanation": "In diesem Abschnitt sollen Sie die Qualität der Unternehmensberatung bewerten. Hierfür betrachten wir verschiedene Kriterien, wie beispielsweise das Vertrauen in die Beratung oder deren Akzeptanz. Im Folgenden finden Sie eine Reihe von Aussagen. Bitte geben Sie für jede der Aussagen an, wie gut sie auf Sie persönlich zutrifft.",
+        "notice": "Bitte geben Sie Ihre Zustimmung auf einer Skala von von 'stimme überhaupt nicht zu = --' bis 'stimme völlig zu = ++' für jede Aussage an. Die Felder dazwischen ermöglichen Ihnen eine Abstufung Ihrer Antworten.",
+        "q1": "1. Schwierigkeitsgrad der einzelnen Aufgaben",
+        "q11": "Wie leicht empfanden Sie Aufgabe",
+        "q2": "2. Vertrauen",
+        "q21": "Ich vertraue der Beratung",
+        "q3": "3. Kompetenz",
+        "q31": "Die Beratung ist kompetent/fachkundig",
+        "q4": "4. Vorhersehbarkeit",
+        "q41": "Die Beratung ist vorhersehbar",
+        "q5": "5. Zuverlässigkeit",
+        "q51": "Die Beratung ist zuverlässig",
+        "q6": "6. Kontrollfrage",
+        "q7": "7. Akzeptanz",
+        "q71": "Ich akzeptiere die Beratung",
+        "q8": "8. Nutzerzufriedenheit",
+        "q81": "Ich bin zufrieden mit der Beratung",
+        "q9": "9. Störung durch die Beratung",
+        "q91": "Ich fühle mich durch die Beratung gestört"
+    },
+    "ending": {
+        "gif": "imgs/diCaprio.gif",
+        "code": "A89R232MJI",
+        "text1": "Vielen Dank fürs Mitspielen! Die Studie ist abgeschlossen! Im Folgenden finden Sie Ihren Clickworker-Code und Ihre Ergebnisse.",
+        "text2": "Wichtiger Hinweis: ",
+        "text3": "Bitte kopieren Sie den folgenden Code und fügen ihn in das dafür vorgesehene Feld innerhalb ihres Clickworker-Aufgabenformulars ein",
+        "text4": "Ohne die Eingabe dieses Codes kann eine Gutschrift Ihres Honorars nicht erfolgen",
+        "text5": "Hier ist Ihr Endergebnis:"
+    }
+}

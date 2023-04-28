@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+  <h1>Planspiel CEO</h1>
+  <h3 class="mt-3">{{ data.headline }}</h3>
+  <h5 class="mt-3">{{ data.text }}</h5>
+  <form method="post" action="{% url 'personalData' %}">
+    {% csrf_token %}
+    <div class="card m-4">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="row justify-content-center">
+                <label class="form-label mt-3" for="user_id">{{ data.user_id.text }}</label><br>
+                <div class="col-md-11">
+                  <input class="form-control" type="text" name="user_id" id="user_id" placeholder="Bitte Code eingeben" required>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <label class="form-check-label" for="gender">{{ data.gender.text }}</label><br>
+                <div class="col-md-11">
+                  <input class="form-check-input mt-1" type="radio" id="{{ data.gender.option.1 }}" name="gender" value="{{ data.gender.option.1 }}" required>
+                  <label class="form-check-label" for="{{ data.gender.option.1 }}" onclick="">männlich</label><br>
+                  <input class="form-check-input mt-1" type="radio" id="{{ data.gender.option.2 }}" name="gender" value="{{ data.gender.option.2 }}" required>
+                  <label class="form-check-label" for="{{ data.gender.option.2 }}" onclick="">weiblich</label><br>
+                  <input class="form-check-input mt-1" type="radio" id="{{ data.gender.option.3 }}" name="gender" value="{{ data.gender.option.3 }}" required>
+                  <label class="form-check-label" for="{{ data.gender.option.3 }}" onclick="">divers</label>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <label for="age">{{ data.age.text }}</label><br>
+                <div class="col-md-11">
+                  <input class="form-control mt-1" type="number" name="age" id="age" placeholder="Bitte Alter angeben" required>
+                </div>
+              </div>
+              <div class="mt-5">
+                <label>{{ data.TA.text }}</label>
+                <small>{{ data.notice }}</small>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-11">
+                    <div>
+                      <label class="form-label mt-3" for="TA1">{{ data.TA.1 }}</label><br>
+                      <input class="form-range" type="range" id="TA1" name="TA1" min="1" max="5" step="1" value="3" >
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="TA2">{{ data.TA.2 }}</label><br>
+                      <input class="form-range" type="range" id="TA2" name="TA2" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="TA3">{{ data.TA.3 }}</label><br>
+                      <input class="form-range" type="range" id="TA3" name="TA3" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="TA4">{{ data.TA.4 }}</label><br>
+                      <input class="form-range" type="range" id="TA4" name="TA4" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="TA5">{{ data.TA.5 }}</label><br>
+                      <input class="form-range" type="range" id="TA5" name="TA5" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="TA6">{{ data.TA.6 }}</label><br>
+                      <input class="form-range" type="range" id="TA6" name="TA6" min="1" max="5" step="1" value="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5">
+                <label>{{ data.PreTrust.text }}</label>
+                <small>{{ data.notice }}</small>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-11">
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust1">{{ data.PreTrust.1 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust1" name="PreTrust1" min="1" max="5" step="1" value="3" >
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust2">{{ data.PreTrust.2 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust2" name="PreTrust2" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust3">{{ data.PreTrust.3 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust3" name="PreTrust3" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust4">{{ data.PreTrust.4 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust4" name="PreTrust4" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust5">{{ data.PreTrust.5 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust5" name="PreTrust5" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="PreTrust6">{{ data.PreTrust.6 }}</label><br>
+                      <input class="form-range" type="range" id="PreTrust6" name="PreTrust6" min="1" max="5" step="1" value="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5">
+                <label>{{ data.Personality.text }}</label>
+                <small>{{ data.notice }}</small>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-11">
+                    <div>
+                      <label class="form-label mt-3" for="Personality1">{{ data.Personality.1 }}</label><br>
+                      <input class="form-range" type="range" id="Personality1" name="Personality1" min="1" max="5" step="1" value="3" >
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality2">{{ data.Personality.2 }}</label><br>
+                      <input class="form-range" type="range" id="Personality2" name="Personality2" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality3">{{ data.Personality.3 }}</label><br>
+                      <input class="form-range" type="range" id="Personality3" name="Personality3" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality4">{{ data.Personality.4 }}</label><br>
+                      <input class="form-range" type="range" id="Personality4" name="Personality4" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality5">{{ data.Personality.5 }}</label><br>
+                      <input class="form-range" type="range" id="Personality5" name="Personality5" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality6">{{ data.Personality.6 }}</label><br>
+                      <input class="form-range" type="range" id="Personality6" name="Personality6" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality7">{{ data.Personality.7 }}</label><br>
+                      <input class="form-range" type="range" id="Personality7" name="Personality7" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality8">{{ data.Personality.8 }}</label><br>
+                      <input class="form-range" type="range" id="Personality8" name="Personality8" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality9">{{ data.Personality.9 }}</label><br>
+                      <input class="form-range" type="range" id="Personality9" name="Personality9" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="Personality10">{{ data.Personality.10 }}</label><br>
+                      <input class="form-range" type="range" id="Personality10" name="Personality10" min="1" max="5" step="1" value="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5">
+                <label>{{ data.ExperienceEco.text }}</label>
+                <small>{{ data.notice }}</small>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-11">
+                    <div>
+                      <label class="form-label mt-3" for="ExperienceEco1">{{ data.ExperienceEco.1 }}</label><br>
+                      <input class="form-range" type="range" id="ExperienceEco1" name="ExperienceEco1" min="1" max="5" step="1" value="3" >
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="ExperienceEco2">{{ data.ExperienceEco.2 }}</label><br>
+                      <input class="form-range" type="range" id="ExperienceEco2" name="ExperienceEco2" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div>
+                      <label class="form-label mt-3" for="ExperienceEco3">{{ data.ExperienceEco.3 }}</label><br>
+                      <input class="form-range" type="range" id="ExperienceEco3" name="ExperienceEco3" min="1" max="5" step="1" value="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-5">
+                <div class="col-md-1">
+                  <button class="btn btn-success" type="submit">Weiter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
