@@ -24,15 +24,25 @@ def personalData(request):
         proactivity_agent = ProactivityAgent()
         proactivity_agent.get_pers_data(form_data)
         print(proactivity_agent.pers_data)
-        
-        # json_data = json.dumps(form_data)            
-        # write_json('personalData.json', json_data)
             
         return redirect('mainTask', page=1)
     
     data = read_json('conversation.json') 
     context = {
-        'data': data['personalData']
+        'headline': data['personalData']['headline'],
+        'text': data['personalData']['text'],
+        'user_id': data['personalData']['user_id'],
+        'gender': data['personalData']['gender'],
+        'age': data['personalData']['age'],
+        'TA_text': data['personalData']['TA_text'],
+        'TA': data['personalData']['TA'],
+        'PreTrust_text': data['personalData']['PreTrust_text'],
+        'PreTrust': data['personalData']['PreTrust'],
+        'Personality_text': data['personalData']['Personality_text'],
+        'Personality': data['personalData']['Personality'],
+        'ExperienceEco_text': data['personalData']['ExperienceEco_text'],
+        'ExperienceEco': data['personalData']['ExperienceEco'],
+        'notice': data['personalData']['notice'],
     }
     
     return render(request, 'personalData.html', context)
@@ -109,13 +119,13 @@ def mainTask(request, page):
     
 def rate(request, page):
     if request.method == 'POST':
-        form_data = dict(request.POST.items())
-        form_data.pop("csrfmiddlewaretoken")
+        # form_data = dict(request.POST.items())
+        # form_data.pop("csrfmiddlewaretoken")
         
-        pers_data = read_json('personalData.json') 
-        pers_data.update(form_data)
-        pers_data = json.dumps(pers_data)            
-        write_json('personalData.json', pers_data)
+        # pers_data = read_json('personalData.json') 
+        # pers_data.update(form_data)
+        # pers_data = json.dumps(pers_data)            
+        # write_json('personalData.json', pers_data)
         
         return redirect('mainTask', page+1)
         
@@ -169,7 +179,7 @@ def ending(request):
                 break
         
     remove_json("data.json")
-    remove_json("personalData.json")
+    # remove_json("personalData.json")
     
     context = {
         'contex_data': contex_data,

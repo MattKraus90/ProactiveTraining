@@ -8,7 +8,8 @@ from stable_baselines3 import DQN
 from proactivityAgent.createDataVector import CreateDataVector
 from proactivityAgent.createStepData import StepData
 from proactivityAgent.personalDetails import PersonalDetails
-from proactivityAgent.utils import proactivity_encoding_to_text
+from proactivityAgent.utils import proactivity_encoding_to_text, proactivity_text_to_encoding
+from configparser import ConfigParser
 
 DIRECTORY_PATH = os.path.dirname(__file__)
 
@@ -17,6 +18,9 @@ class ProactivityAgent:
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
+            
+            cls._instance.config = ConfigParser()
+            cls._instance.config.read(os.path.join(DIRECTORY_PATH, "data/Config.ini"))
             
             cls._instance.pers_data_obj = PersonalDetails()
             cls._instance.step_data_obj = StepData()
@@ -34,8 +38,20 @@ class ProactivityAgent:
             cls._instance.complexity_list = np.array([3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5])
             cls._instance.proactivity_agent_model = DQN.load(os.path.join(DIRECTORY_PATH, "agents/dqn_agent"))
             
+            cls._instance.strategy_1_list = cls._instance.__get_strategy_1_list()
+            
         return cls._instance
 
+    def __get_strategy_1_list(self):
+        if self.config['Proactivity_Strategy']['Strategy_1']:
+            proactivity_steps = [np.random.choice([1, 2, 3]),
+                                    np.random.choice([4, 5, 6]),
+                                    np.random.choice([7, 8, 9]),
+                                    np.random.choice([10, 11, 12])]
+        else:
+            proactivity_steps = []
+        
+        return proactivity_steps
 
     def __get_step_data(self):
         self.step_data_obj.set_step_data(self.step_number, self.proactivity, self.help_req, self.sugg_req, self.duration)
@@ -80,28 +96,54 @@ class ProactivityAgent:
         
         
     def return_proactivity(self, step_number):
-        if step_number == 1:
-            previous_duration = 35.76623376623377  # overall mean
-            previous_points = 14.35064935064935  # overall mean
-            previous_trust = self.data_temp.loc[(0, 'preTrust')]
-        else:
-            previous_duration = self.data_temp.loc[(0, 'duration' + str(step_number - 1))]
-            previous_points = self.data_temp.loc[(0, 'points' + str(step_number - 1))]
-            previous_trust = self.data_temp.loc[(0, 'trust' + str(step_number - 1))]
+        if self.config['Proactivity_Strategy']['Just_one'] != 'False':
+            self.proactivity = proactivity_text_to_encoding(self.config['Proactivity_Strategy']['just_one'])
+        elif self.config['Proactivity_Strategy']['Random'] == 'True':
+            self.proactivity = np.random.choice([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+        elif self.config['Proactivity_Strategy']['Strategy_1'] == 'True':
+            if step_number in self.strategy_1_list:
+                self.proactivity = np.random.choice([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+            else:
+                self.proactivity = [1, 0, 0, 0] 
+        # elif self.config['Proactivity_Strategy']['Strategy_Gt_Dataset'] == 'True':
+        #     proactivity_df = pd.read_csv('../misc/DataAnalysis/proactivity_gt.csv')
+        #     self.proactivity = proactivity_text_to_encoding(
+        #         # TODO: user number
+        #         proactivity_df.loc[user_number, 'ProactiveTask' + str(step_number)].lower())
+        elif self.config['Proactivity_Strategy']['Strategy_Adaptive'] == 'True':
+            if self.last_trust == 5:
+                self.proactivity = [0, 0, 0, 1]
+            elif self.last_trust == 4:
+                self.proactivity = [0, 0, 1, 0]
+            elif self.last_trust == 3:
+                self.proactivity = [0, 1, 0, 0]
+            else:
+                self.proactivity = [1, 0, 0, 0]
+        elif self.config['Proactivity_Strategy']['Strategy_agent'] == 'True':
+            if step_number == 1:
+                previous_duration = 35.76623376623377  # overall mean
+                previous_points = 14.35064935064935  # overall mean
+                previous_trust = self.data_temp.loc[(0, 'preTrust')]
+            else:
+                previous_duration = self.data_temp.loc[(0, 'duration' + str(step_number - 1))]
+                previous_points = self.data_temp.loc[(0, 'points' + str(step_number - 1))]
+                previous_trust = self.data_temp.loc[(0, 'trust' + str(step_number - 1))]
 
-        observation = np.array([step_number, self.complexity_list[step_number - 1], previous_trust, previous_points,
-                                previous_duration]).astype(np.int16)
-        action, _states = self.proactivity_agent_model.predict(observation, deterministic=True)
-        
-        if action == 3:
-            self.proactivity = [0, 0, 0, 1]
-        elif action == 2:
-            self.proactivity = [0, 0, 1, 0]
-        elif action == 1:
-            self.proactivity = [0, 1, 0, 0]
-        else:
-            self.proactivity = [1, 0, 0, 0]
+            observation = np.array([step_number, self.complexity_list[step_number - 1], previous_trust, previous_points,
+                                    previous_duration]).astype(np.int16)
+            action, _states = self.proactivity_agent_model.predict(observation, deterministic=True)
             
+            if action == 3:
+                self.proactivity = [0, 0, 0, 1]
+            elif action == 2:
+                self.proactivity = [0, 0, 1, 0]
+            elif action == 1:
+                self.proactivity = [0, 1, 0, 0]
+            else:
+                self.proactivity = [1, 0, 0, 0]
+        else:
+            raise Exception('Please choose a valid proactivity strategy.')
+        
         return self.proactivity
 
         

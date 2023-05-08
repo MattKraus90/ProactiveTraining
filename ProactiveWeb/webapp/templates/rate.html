@@ -32,122 +32,68 @@
                   {{ conv_data.explanation }}
                 </div>
                 <div class="mt-5">
-                  <label>{{ conv_data.q1 }}</label><br>
+                  <label>{{ conv_data.Aufgabe_text }}</label><br>
                   <small>{{ conv_data.notice }}</small>
                   <div class="row justify-content-center mt-3">
                     <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.0 }}">{{ conv_data.q11 }} {{ task_arr.0 }}?</label><br>
-                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.0 }}" name="Aufgabe{{ task_arr.0 }}" min="1" max="5" step="1" value="3" >
+                      {% for item in task_arr %}
+                      <div class="slider-container mt-3">
+                        <label class="slider-label" for="Aufgabe{{ item }}">{{ conv_data.Aufgabe }} {{ item }}?</label><br>
+                        <div class="slider-ticks">
+                          <div class="slider-tick">--</div>
+                          <div class="slider-tick">-</div>
+                          <div class="slider-tick">+/-</div>
+                          <div class="slider-tick">+</div>
+                          <div class="slider-tick">++</div>
+                        </div>
+                        <input class="form-range" type="range" id="Aufgabe{{ item }}" name="Aufgabe{{ item }}" min="1" max="5" step="1" value="3" >
                       </div>
-                      <div>
-                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.1 }}">{{ conv_data.q11 }} {{ task_arr.1 }}?</label><br>
-                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.1 }}" name="Aufgabe{{ task_arr.1 }}" min="1" max="5" step="1" value="3">
-                      </div>
-                      <div>
-                        <label class="form-label mt-3" for="Aufgabe{{ task_arr.2 }}">{{ conv_data.q11 }} {{ task_arr.2 }}?</label><br>
-                        <input class="form-range" type="range" id="Aufgabe{{ task_arr.2 }}" name="Aufgabe{{ task_arr.2 }}" min="1" max="5" step="1" value="3">
-                      </div>
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
+                {% for key, value in conv_data.questions.items %}
                 <div class="mt-5">
-                  <label>{{ conv_data.q2 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Trust">{{ conv_data.q21 }}</label><br>
-                        <input class="form-range" type="range" id="Trust" name="Trust" min="1" max="5" step="1" value="3" >
+                  {% if key == 'Control' %}
+                    <label>{{ value }}</label><br>
+                    <small>{{ conv_data.notice }}</small>
+                    <div class="row justify-content-center mt-3">
+                      <div class="col-md-11">
+                        <div class="slider-container mt-3">
+                          <label class="slider-label" for="{{ key }}">Bitte wählen Sie das {{ check }} aus</label><br>
+                          <div class="slider-ticks">
+                            <div class="slider-tick">--</div>
+                            <div class="slider-tick">-</div>
+                            <div class="slider-tick">+/-</div>
+                            <div class="slider-tick">+</div>
+                            <div class="slider-tick">++</div>
+                          </div>
+                          <input class="form-range" type="range" id="{{ key }}" name="{{ key }}" min="1" max="5" step="1" value="3" >
+                          <div id="error-message"></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q3 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Competence">{{ conv_data.q31 }}</label><br>
-                        <input class="form-range" type="range" id="Competence" name="Competence" min="1" max="5" step="1" value="3" >
+                  {% else %}
+                    <label>{{ value.1 }}</label><br>
+                    <small>{{ conv_data.notice }}</small>
+                    <div class="row justify-content-center mt-3">
+                      <div class="col-md-11">
+                        <div class="slider-container mt-3">
+                          <label class="slider-label" for="{{ key }}">{{ value.2 }}</label><br>
+                          <div class="slider-ticks">
+                            <div class="slider-tick">--</div>
+                            <div class="slider-tick">-</div>
+                            <div class="slider-tick">+/-</div>
+                            <div class="slider-tick">+</div>
+                            <div class="slider-tick">++</div>
+                          </div>
+                          <input class="form-range" type="range" id="{{ key }}" name="{{ key }}" min="1" max="5" step="1" value="3" >
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  {% endif %}
                 </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q4 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Predictability">{{ conv_data.q41 }}</label><br>
-                        <input class="form-range" type="range" id="Predictability" name="Predictability" min="1" max="5" step="1" value="3" >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q5 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Reliability">{{ conv_data.q51 }}</label><br>
-                        <input class="form-range" type="range" id="Reliability" name="Reliability" min="1" max="5" step="1" value="3" >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q6 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Control">Bitte wählen Sie das {{ check }} aus</label><br>
-                        <input class="form-range" type="range" id="Control" name="Control" min="1" max="5" step="1" value="3" >
-                        <div id="error-message"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q7 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Acceptance">{{ conv_data.q71 }}</label><br>
-                        <input class="form-range" type="range" id="Acceptance" name="Acceptance" min="1" max="5" step="1" value="3" >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q8 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Satisfaction">{{ conv_data.q81 }}</label><br>
-                        <input class="form-range" type="range" id="Satisfaction" name="Satisfaction" min="1" max="5" step="1" value="3" >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-5">
-                  <label>{{ conv_data.q9 }}</label><br>
-                  <small>{{ conv_data.notice }}</small>
-                  <div class="row justify-content-center mt-3">
-                    <div class="col-md-11">
-                      <div>
-                        <label class="form-label mt-3" for="Annoyance">{{ conv_data.q91 }}</label><br>
-                        <input class="form-range" type="range" id="Annoyance" name="Annoyance" min="1" max="5" step="1" value="3" >
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
               <div class="row justify-content-center mt-5">
                 <div class="col-md-1">
