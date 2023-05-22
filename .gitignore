@@ -1,8 +1,7 @@
 **/__pycache__
-
-ProactiveWeb/.cache/
-ProactiveWeb/.config/
-ProactiveWeb/.vscode/
-ProactiveWeb/.bash_history
+**/.vscode
+**/.cache
+**/.config
+**/.bash_history
 
 ProactiveWeb/webapp/static/imgs/

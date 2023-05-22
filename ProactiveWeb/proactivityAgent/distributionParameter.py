@@ -4,7 +4,6 @@ from copy import deepcopy
 
 import numpy as np
 import pandas as pd
-
 from proactivityAgent.datasets import GenDatasets
 from proactivityAgent.distribution_parameter_dict import \
     DistParameterDataStructures
@@ -744,62 +743,114 @@ class DistributionParameter:
         self.df_proact_intervention = self.dataset_obj.df_dict[personality_values]['intervention']
 
     def save_dataset_lengths(self):
-        self.dist_parameter_proact_none['0']['#'] = len(self.df_proact_none['0'].index)
-        self.dist_parameter_proact_notification['0']['#'] = len(self.df_proact_notification['0'].index)
-        self.dist_parameter_proact_suggestion['0']['#'] = len(self.df_proact_suggestion['0'].index)
-        self.dist_parameter_proact_intervention['0']['#'] = len(self.df_proact_intervention['0'].index)
+        self.dist_parameter_proact_none['0']['#'] = len(
+            self.df_proact_none['0'].index)
+        self.dist_parameter_proact_notification['0']['#'] = len(
+            self.df_proact_notification['0'].index)
+        self.dist_parameter_proact_suggestion['0']['#'] = len(
+            self.df_proact_suggestion['0'].index)
+        self.dist_parameter_proact_intervention['0']['#'] = len(
+            self.df_proact_intervention['0'].index)
 
-        self.dist_parameter_proact_none['1']['#'] = len(self.df_proact_none['1'].index)
-        self.dist_parameter_proact_none['2']['#'] = len(self.df_proact_none['2'].index)
-        self.dist_parameter_proact_none['3']['#'] = len(self.df_proact_none['3'].index)
-        self.dist_parameter_proact_none['4']['#'] = len(self.df_proact_none['4'].index)
-        self.dist_parameter_proact_none['5']['#'] = len(self.df_proact_none['5'].index)
-        self.dist_parameter_proact_none['6']['#'] = len(self.df_proact_none['6'].index)
-        self.dist_parameter_proact_none['7']['#'] = len(self.df_proact_none['7'].index)
-        self.dist_parameter_proact_none['8']['#'] = len(self.df_proact_none['8'].index)
-        self.dist_parameter_proact_none['9']['#'] = len(self.df_proact_none['9'].index)
-        self.dist_parameter_proact_none['10']['#'] = len(self.df_proact_none['10'].index)
-        self.dist_parameter_proact_none['11']['#'] = len(self.df_proact_none['11'].index)
-        self.dist_parameter_proact_none['12']['#'] = len(self.df_proact_none['12'].index)
+        self.dist_parameter_proact_none['1']['#'] = len(
+            self.df_proact_none['1'].index)
+        self.dist_parameter_proact_none['2']['#'] = len(
+            self.df_proact_none['2'].index)
+        self.dist_parameter_proact_none['3']['#'] = len(
+            self.df_proact_none['3'].index)
+        self.dist_parameter_proact_none['4']['#'] = len(
+            self.df_proact_none['4'].index)
+        self.dist_parameter_proact_none['5']['#'] = len(
+            self.df_proact_none['5'].index)
+        self.dist_parameter_proact_none['6']['#'] = len(
+            self.df_proact_none['6'].index)
+        self.dist_parameter_proact_none['7']['#'] = len(
+            self.df_proact_none['7'].index)
+        self.dist_parameter_proact_none['8']['#'] = len(
+            self.df_proact_none['8'].index)
+        self.dist_parameter_proact_none['9']['#'] = len(
+            self.df_proact_none['9'].index)
+        self.dist_parameter_proact_none['10']['#'] = len(
+            self.df_proact_none['10'].index)
+        self.dist_parameter_proact_none['11']['#'] = len(
+            self.df_proact_none['11'].index)
+        self.dist_parameter_proact_none['12']['#'] = len(
+            self.df_proact_none['12'].index)
 
-        self.dist_parameter_proact_notification['1']['#'] = len(self.df_proact_notification['1'].index)
-        self.dist_parameter_proact_notification['2']['#'] = len(self.df_proact_notification['2'].index)
-        self.dist_parameter_proact_notification['3']['#'] = len(self.df_proact_notification['3'].index)
-        self.dist_parameter_proact_notification['4']['#'] = len(self.df_proact_notification['4'].index)
-        self.dist_parameter_proact_notification['5']['#'] = len(self.df_proact_notification['5'].index)
-        self.dist_parameter_proact_notification['6']['#'] = len(self.df_proact_notification['6'].index)
-        self.dist_parameter_proact_notification['7']['#'] = len(self.df_proact_notification['7'].index)
-        self.dist_parameter_proact_notification['8']['#'] = len(self.df_proact_notification['8'].index)
-        self.dist_parameter_proact_notification['9']['#'] = len(self.df_proact_notification['9'].index)
-        self.dist_parameter_proact_notification['10']['#'] = len(self.df_proact_notification['10'].index)
-        self.dist_parameter_proact_notification['11']['#'] = len(self.df_proact_notification['11'].index)
-        self.dist_parameter_proact_notification['12']['#'] = len(self.df_proact_notification['12'].index)
+        self.dist_parameter_proact_notification['1']['#'] = len(
+            self.df_proact_notification['1'].index)
+        self.dist_parameter_proact_notification['2']['#'] = len(
+            self.df_proact_notification['2'].index)
+        self.dist_parameter_proact_notification['3']['#'] = len(
+            self.df_proact_notification['3'].index)
+        self.dist_parameter_proact_notification['4']['#'] = len(
+            self.df_proact_notification['4'].index)
+        self.dist_parameter_proact_notification['5']['#'] = len(
+            self.df_proact_notification['5'].index)
+        self.dist_parameter_proact_notification['6']['#'] = len(
+            self.df_proact_notification['6'].index)
+        self.dist_parameter_proact_notification['7']['#'] = len(
+            self.df_proact_notification['7'].index)
+        self.dist_parameter_proact_notification['8']['#'] = len(
+            self.df_proact_notification['8'].index)
+        self.dist_parameter_proact_notification['9']['#'] = len(
+            self.df_proact_notification['9'].index)
+        self.dist_parameter_proact_notification['10']['#'] = len(
+            self.df_proact_notification['10'].index)
+        self.dist_parameter_proact_notification['11']['#'] = len(
+            self.df_proact_notification['11'].index)
+        self.dist_parameter_proact_notification['12']['#'] = len(
+            self.df_proact_notification['12'].index)
 
-        self.dist_parameter_proact_suggestion['1']['#'] = len(self.df_proact_suggestion['1'].index)
-        self.dist_parameter_proact_suggestion['2']['#'] = len(self.df_proact_suggestion['2'].index)
-        self.dist_parameter_proact_suggestion['3']['#'] = len(self.df_proact_suggestion['3'].index)
-        self.dist_parameter_proact_suggestion['4']['#'] = len(self.df_proact_suggestion['4'].index)
-        self.dist_parameter_proact_suggestion['5']['#'] = len(self.df_proact_suggestion['5'].index)
-        self.dist_parameter_proact_suggestion['6']['#'] = len(self.df_proact_suggestion['6'].index)
-        self.dist_parameter_proact_suggestion['7']['#'] = len(self.df_proact_suggestion['7'].index)
-        self.dist_parameter_proact_suggestion['8']['#'] = len(self.df_proact_suggestion['8'].index)
-        self.dist_parameter_proact_suggestion['9']['#'] = len(self.df_proact_suggestion['9'].index)
-        self.dist_parameter_proact_suggestion['10']['#'] = len(self.df_proact_suggestion['10'].index)
-        self.dist_parameter_proact_suggestion['11']['#'] = len(self.df_proact_suggestion['11'].index)
-        self.dist_parameter_proact_suggestion['12']['#'] = len(self.df_proact_suggestion['12'].index)
+        self.dist_parameter_proact_suggestion['1']['#'] = len(
+            self.df_proact_suggestion['1'].index)
+        self.dist_parameter_proact_suggestion['2']['#'] = len(
+            self.df_proact_suggestion['2'].index)
+        self.dist_parameter_proact_suggestion['3']['#'] = len(
+            self.df_proact_suggestion['3'].index)
+        self.dist_parameter_proact_suggestion['4']['#'] = len(
+            self.df_proact_suggestion['4'].index)
+        self.dist_parameter_proact_suggestion['5']['#'] = len(
+            self.df_proact_suggestion['5'].index)
+        self.dist_parameter_proact_suggestion['6']['#'] = len(
+            self.df_proact_suggestion['6'].index)
+        self.dist_parameter_proact_suggestion['7']['#'] = len(
+            self.df_proact_suggestion['7'].index)
+        self.dist_parameter_proact_suggestion['8']['#'] = len(
+            self.df_proact_suggestion['8'].index)
+        self.dist_parameter_proact_suggestion['9']['#'] = len(
+            self.df_proact_suggestion['9'].index)
+        self.dist_parameter_proact_suggestion['10']['#'] = len(
+            self.df_proact_suggestion['10'].index)
+        self.dist_parameter_proact_suggestion['11']['#'] = len(
+            self.df_proact_suggestion['11'].index)
+        self.dist_parameter_proact_suggestion['12']['#'] = len(
+            self.df_proact_suggestion['12'].index)
 
-        self.dist_parameter_proact_intervention['1']['#'] = len(self.df_proact_intervention['1'].index)
-        self.dist_parameter_proact_intervention['2']['#'] = len(self.df_proact_intervention['2'].index)
-        self.dist_parameter_proact_intervention['3']['#'] = len(self.df_proact_intervention['3'].index)
-        self.dist_parameter_proact_intervention['4']['#'] = len(self.df_proact_intervention['4'].index)
-        self.dist_parameter_proact_intervention['5']['#'] = len(self.df_proact_intervention['5'].index)
-        self.dist_parameter_proact_intervention['6']['#'] = len(self.df_proact_intervention['6'].index)
-        self.dist_parameter_proact_intervention['7']['#'] = len(self.df_proact_intervention['7'].index)
-        self.dist_parameter_proact_intervention['8']['#'] = len(self.df_proact_intervention['8'].index)
-        self.dist_parameter_proact_intervention['9']['#'] = len(self.df_proact_intervention['9'].index)
-        self.dist_parameter_proact_intervention['10']['#'] = len(self.df_proact_intervention['10'].index)
-        self.dist_parameter_proact_intervention['11']['#'] = len(self.df_proact_intervention['11'].index)
-        self.dist_parameter_proact_intervention['12']['#'] = len(self.df_proact_intervention['12'].index)
+        self.dist_parameter_proact_intervention['1']['#'] = len(
+            self.df_proact_intervention['1'].index)
+        self.dist_parameter_proact_intervention['2']['#'] = len(
+            self.df_proact_intervention['2'].index)
+        self.dist_parameter_proact_intervention['3']['#'] = len(
+            self.df_proact_intervention['3'].index)
+        self.dist_parameter_proact_intervention['4']['#'] = len(
+            self.df_proact_intervention['4'].index)
+        self.dist_parameter_proact_intervention['5']['#'] = len(
+            self.df_proact_intervention['5'].index)
+        self.dist_parameter_proact_intervention['6']['#'] = len(
+            self.df_proact_intervention['6'].index)
+        self.dist_parameter_proact_intervention['7']['#'] = len(
+            self.df_proact_intervention['7'].index)
+        self.dist_parameter_proact_intervention['8']['#'] = len(
+            self.df_proact_intervention['8'].index)
+        self.dist_parameter_proact_intervention['9']['#'] = len(
+            self.df_proact_intervention['9'].index)
+        self.dist_parameter_proact_intervention['10']['#'] = len(
+            self.df_proact_intervention['10'].index)
+        self.dist_parameter_proact_intervention['11']['#'] = len(
+            self.df_proact_intervention['11'].index)
+        self.dist_parameter_proact_intervention['12']['#'] = len(
+            self.df_proact_intervention['12'].index)
 
     def load_distribution_parameter_overall(self, step_number):
         """Calculates distribution values for Duration, Difficulty, HelpRequest, SuggestionRequest.
@@ -878,14 +929,22 @@ class DistributionParameter:
         # df_none_h0s1.to_csv('Test/df_h0s1.csv', sep=',')
         # df_none_h0s0.to_csv('Test/df_h0s0.csv', sep=',')
 
-        self.dist_parameter_proact_none[step_number]['Duration']['Help1_Sugg1']['#'] = len(df_none_h1s1.index)
-        self.dist_parameter_proact_none[step_number]['Duration']['Help1_Sugg0']['#'] = len(df_none_h1s0.index)
-        self.dist_parameter_proact_none[step_number]['Duration']['Help0_Sugg1']['#'] = len(df_none_h0s1.index)
-        self.dist_parameter_proact_none[step_number]['Duration']['Help0_Sugg0']['#'] = len(df_none_h0s0.index)
-        self.dist_parameter_proact_none[step_number]['Difficulty']['Help1_Sugg1']['#'] = len(df_none_h1s1.index)
-        self.dist_parameter_proact_none[step_number]['Difficulty']['Help1_Sugg0']['#'] = len(df_none_h1s0.index)
-        self.dist_parameter_proact_none[step_number]['Difficulty']['Help0_Sugg1']['#'] = len(df_none_h0s1.index)
-        self.dist_parameter_proact_none[step_number]['Difficulty']['Help0_Sugg0']['#'] = len(df_none_h0s0.index)
+        self.dist_parameter_proact_none[step_number]['Duration']['Help1_Sugg1']['#'] = len(
+            df_none_h1s1.index)
+        self.dist_parameter_proact_none[step_number]['Duration']['Help1_Sugg0']['#'] = len(
+            df_none_h1s0.index)
+        self.dist_parameter_proact_none[step_number]['Duration']['Help0_Sugg1']['#'] = len(
+            df_none_h0s1.index)
+        self.dist_parameter_proact_none[step_number]['Duration']['Help0_Sugg0']['#'] = len(
+            df_none_h0s0.index)
+        self.dist_parameter_proact_none[step_number]['Difficulty']['Help1_Sugg1']['#'] = len(
+            df_none_h1s1.index)
+        self.dist_parameter_proact_none[step_number]['Difficulty']['Help1_Sugg0']['#'] = len(
+            df_none_h1s0.index)
+        self.dist_parameter_proact_none[step_number]['Difficulty']['Help0_Sugg1']['#'] = len(
+            df_none_h0s1.index)
+        self.dist_parameter_proact_none[step_number]['Difficulty']['Help0_Sugg0']['#'] = len(
+            df_none_h0s0.index)
 
         self.dist_parameter_proact_none[step_number]['Duration']['Help1_Sugg1']['mean'] = float(
             np.mean(df_none_h1s1['TimeDurationTask']))
@@ -1111,10 +1170,14 @@ class DistributionParameter:
         for p in ('overall', '000', '001', '010', '011', '100', '101', '110', '111'):
             self.load_datasets(personality_values=p)
             self.load_all_distribution_parameters()
-            self.dist_parameter[p]['none'] = deepcopy(self.dist_parameter_proact_none)
-            self.dist_parameter[p]['notification'] = deepcopy(self.dist_parameter_proact_notification)
-            self.dist_parameter[p]['suggestion'] = deepcopy(self.dist_parameter_proact_suggestion)
-            self.dist_parameter[p]['intervention'] = deepcopy(self.dist_parameter_proact_intervention)
+            self.dist_parameter[p]['none'] = deepcopy(
+                self.dist_parameter_proact_none)
+            self.dist_parameter[p]['notification'] = deepcopy(
+                self.dist_parameter_proact_notification)
+            self.dist_parameter[p]['suggestion'] = deepcopy(
+                self.dist_parameter_proact_suggestion)
+            self.dist_parameter[p]['intervention'] = deepcopy(
+                self.dist_parameter_proact_intervention)
             self.print_len_dist(p)
         # print('Distribution parameter generated...')
 

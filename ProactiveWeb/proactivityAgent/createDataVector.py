@@ -14,6 +14,7 @@ import pandas as pd
 
 DIRECTORY_PATH = os.path.dirname(__file__)
 
+
 class CreateDataVector:
     def __init__(self):
         self.input_vector = []
@@ -65,13 +66,17 @@ class CreateDataVector:
             (float(
                 self.current_dataframe.loc[(0, 'difficulty' + str(step_number))]) - self.mean_likert) / self.std_likert)
         if step_number == 1 or 2 or 3 or 4 or 5 or 11:
-            current_task_vector.append((10 - self.mean_points) / self.std_points)
+            current_task_vector.append(
+                (10 - self.mean_points) / self.std_points)
         elif step_number == 8 or 10 or 12:
-            current_task_vector.append((20 - self.mean_points) / self.std_points)
+            current_task_vector.append(
+                (20 - self.mean_points) / self.std_points)
         elif step_number == 6 or 7:
-            current_task_vector.append((30 - self.mean_points) / self.std_points)
+            current_task_vector.append(
+                (30 - self.mean_points) / self.std_points)
         elif step_number == 9:
-            current_task_vector.append((40 - self.mean_points) / self.std_points)
+            current_task_vector.append(
+                (40 - self.mean_points) / self.std_points)
 
         if step_number == 1 or 4 or 7 or 10:
             current_task_vector.extend([1, 0, 0])
@@ -105,7 +110,8 @@ class CreateDataVector:
         if step_number == 1:
             self.dialogue_vector = self.empty
         else:
-            added_up_features_array = np.array(self.create_current_task_features(step_number=step_number))
+            added_up_features_array = np.array(
+                self.create_current_task_features(step_number=step_number))
             for n in range(step_number - 1, 0, -1):
                 added_up_features_array += self.create_current_task_features(n)
             self.dialogue_vector = added_up_features_array / step_number
@@ -115,9 +121,12 @@ class CreateDataVector:
         if step_number < 3:
             self.window_vector = self.empty
         else:
-            added_up_features_array = np.array(self.create_current_task_features(step_number=step_number))
-            added_up_features_array += np.array(self.create_current_task_features(step_number=step_number - 1))
-            added_up_features_array += np.array(self.create_current_task_features(step_number=step_number - 2))
+            added_up_features_array = np.array(
+                self.create_current_task_features(step_number=step_number))
+            added_up_features_array += np.array(
+                self.create_current_task_features(step_number=step_number - 1))
+            added_up_features_array += np.array(
+                self.create_current_task_features(step_number=step_number - 2))
 
             self.window_vector = added_up_features_array / 3
 
@@ -125,9 +134,11 @@ class CreateDataVector:
         self.personal_vector = []
         self.personal_vector.append(
             (self.current_dataframe.loc[(0, 'technical affinity')] - self.mean_likert) / self.std_likert)
-        self.personal_vector.append((self.current_dataframe.loc[(0, 'preTrust')] - self.mean_likert) / self.std_likert)
+        self.personal_vector.append((self.current_dataframe.loc[(
+            0, 'preTrust')] - self.mean_likert) / self.std_likert)
         # TODO: age nicht likert
-        self.personal_vector.append((self.current_dataframe.loc[(0, 'age')] - self.mean_age) / self.std_age)
+        self.personal_vector.append(
+            (self.current_dataframe.loc[(0, 'age')] - self.mean_age) / self.std_age)
 
         if self.current_dataframe.loc[(0, 'gender')] == 'male':
             self.personal_vector.extend([1, 0, 0])
@@ -142,7 +153,8 @@ class CreateDataVector:
             (self.current_dataframe.loc[(0, 'neuroticism')] - self.mean_likert) / self.std_likert)
         self.personal_vector.append(
             (self.current_dataframe.loc[(0, 'extraversion')] - self.mean_likert) / self.std_likert)
-        self.personal_vector.append((self.current_dataframe.loc[(0, 'openness')] - self.mean_likert) / self.std_likert)
+        self.personal_vector.append((self.current_dataframe.loc[(
+            0, 'openness')] - self.mean_likert) / self.std_likert)
         self.personal_vector.append(
             (self.current_dataframe.loc[(0, 'agreeableness')] - self.mean_likert) / self.std_likert)
         self.personal_vector.append(
@@ -152,7 +164,8 @@ class CreateDataVector:
         self.input_vector = []
         self.create_window_features(step_number=step)
         self.create_dialogue_features(step_number=step)
-        current_task_vector = self.create_current_task_features(step_number=step)
+        current_task_vector = self.create_current_task_features(
+            step_number=step)
         self.create_user_features()
 
         self.input_vector.extend(self.window_vector)

@@ -4,10 +4,17 @@ import pandas as pd
 
 DIRECTORY_PATH = os.path.dirname(__file__)
 
+
 class GenDatasets:
-    def __init__(self):
-        self.df_whole = pd.read_csv(os.path.join(DIRECTORY_PATH, 'data/dataSummary.csv'))
-        self.df_whole = self.df_whole.reindex(sorted(self.df_whole.columns), axis=1)
+    def __init__(self):# Punkteberechnung:
+#         meine seite / java seite
+#     1A: 180/210     / 190/210
+#     1B: 200/210     / 190/210
+#     1C: 190/210     / 200/210
+        self.df_whole = pd.read_csv(os.path.join(
+            DIRECTORY_PATH, 'data/dataSummary.csv'))
+        self.df_whole = self.df_whole.reindex(
+            sorted(self.df_whole.columns), axis=1)
         self.df = pd.DataFrame()
 
         self.df_dict = {
@@ -286,50 +293,61 @@ class GenDatasets:
         for i in range(1, 13):
             df_none = self.df[self.df['ProactiveTask' + str(i)] == 'None']
             df_sort_out = df_none.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                      ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                       'pointsTask' + str(i), 'HelpTask' +
+                                       str(i), 'SuggTask' + str(i),
+                                       'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
 
-            self.df_proact_none['0'] = pd.concat([self.df_proact_none['0'], df_sort_out])
+            self.df_proact_none['0'] = pd.concat(
+                [self.df_proact_none['0'], df_sort_out])
 
         for i in range(1, 13):
-            df_notification = self.df[self.df['ProactiveTask' + str(i)] == 'Notification']
+            df_notification = self.df[self.df['ProactiveTask' +
+                                              str(i)] == 'Notification']
             df_sort_out = df_notification.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                              ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                               'pointsTask' + str(i), 'HelpTask' +
+                                                  str(i), 'SuggTask' + str(i),
+                                                  'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
 
-            self.df_proact_notification['0'] = pd.concat([self.df_proact_notification['0'], df_sort_out])
+            self.df_proact_notification['0'] = pd.concat(
+                [self.df_proact_notification['0'], df_sort_out])
 
         for i in range(1, 13):
-            df_suggestion = self.df[self.df['ProactiveTask' + str(i)] == 'Suggestion']
+            df_suggestion = self.df[self.df['ProactiveTask' +
+                                            str(i)] == 'Suggestion']
             df_sort_out = df_suggestion.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                            ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                             'pointsTask' + str(i), 'HelpTask' +
+                                             str(i), 'SuggTask' + str(i),
+                                             'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
 
-            self.df_proact_suggestion['0'] = pd.concat([self.df_proact_suggestion['0'], df_sort_out])
+            self.df_proact_suggestion['0'] = pd.concat(
+                [self.df_proact_suggestion['0'], df_sort_out])
 
         for i in range(1, 13):
-            df_intervention = self.df[self.df['ProactiveTask' + str(i)] == 'Intervention']
+            df_intervention = self.df[self.df['ProactiveTask' +
+                                              str(i)] == 'Intervention']
             df_sort_out = df_intervention.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                              ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                               'pointsTask' + str(i), 'HelpTask' +
+                                                  str(i), 'SuggTask' + str(i),
+                                                  'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
 
-            self.df_proact_intervention['0'] = pd.concat([self.df_proact_intervention['0'], df_sort_out])
+            self.df_proact_intervention['0'] = pd.concat(
+                [self.df_proact_intervention['0'], df_sort_out])
 
         # self.df_proact_none.to_csv('Test/concat_test_none.csv')
         # self.df_proact_notification.to_csv('Test/concat_test_notification.csv')
@@ -344,9 +362,10 @@ class GenDatasets:
         for i in range(1, 13):
             df_none = self.df[self.df['ProactiveTask' + str(i)] == 'None']
             df_sort_out = df_none.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                      ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                       'pointsTask' + str(i), 'HelpTask' +
+                                       str(i), 'SuggTask' + str(i),
+                                       'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
@@ -354,11 +373,13 @@ class GenDatasets:
             self.df_proact_none[str(i)] = df_sort_out.copy()
 
         for i in range(1, 13):
-            df_notification = self.df[self.df['ProactiveTask' + str(i)] == 'Notification']
+            df_notification = self.df[self.df['ProactiveTask' +
+                                              str(i)] == 'Notification']
             df_sort_out = df_notification.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                              ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                               'pointsTask' + str(i), 'HelpTask' +
+                                                  str(i), 'SuggTask' + str(i),
+                                                  'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
@@ -366,11 +387,13 @@ class GenDatasets:
             self.df_proact_notification[str(i)] = df_sort_out.copy()
 
         for i in range(1, 13):
-            df_suggestion = self.df[self.df['ProactiveTask' + str(i)] == 'Suggestion']
+            df_suggestion = self.df[self.df['ProactiveTask' +
+                                            str(i)] == 'Suggestion']
             df_sort_out = df_suggestion.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                            ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                             'pointsTask' + str(i), 'HelpTask' +
+                                             str(i), 'SuggTask' + str(i),
+                                             'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
@@ -378,11 +401,13 @@ class GenDatasets:
             self.df_proact_suggestion[str(i)] = df_sort_out.copy()
 
         for i in range(1, 13):
-            df_intervention = self.df[self.df['ProactiveTask' + str(i)] == 'Intervention']
+            df_intervention = self.df[self.df['ProactiveTask' +
+                                              str(i)] == 'Intervention']
             df_sort_out = df_intervention.loc[:,
-                          ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
-                           'pointsTask' + str(i), 'HelpTask' + str(i), 'SuggTask' + str(i),
-                           'TrustTask' + str(i)]]
+                                              ['ProactiveTask' + str(i), 'TimeDurationTask' + str(i), 'difficultyTask' + str(i),
+                                               'pointsTask' + str(i), 'HelpTask' +
+                                                  str(i), 'SuggTask' + str(i),
+                                                  'TrustTask' + str(i)]]
 
             df_sort_out.columns = ['ProactiveTask', 'TimeDurationTask', 'difficultyTask', 'pointsTask', 'HelpTask',
                                    'SuggTask', 'TrustTask']
