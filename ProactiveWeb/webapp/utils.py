@@ -134,7 +134,11 @@ def random_input_array():
 
 
 def random_strategy():
-    # options = ['Random', 'Just_one', 'Strategy_1',
-    #            'Strategy_Adaptive', 'Strategy_agent']
-    options = ['Random', 'Strategy_1', 'Strategy_Adaptive', 'Strategy_agent']
-    return random.choice(options)
+    options = ['Random', 'Just_one', 'Strategy_1',
+               'Strategy_Adaptive', 'Strategy_agent']
+    option = random.choice(options)
+    if option == 'Just_one':
+        options = ['none', 'notification', 'suggestion', 'intervention']
+        option = {}
+        option['Just_one'] = random.choice(options)
+    return option

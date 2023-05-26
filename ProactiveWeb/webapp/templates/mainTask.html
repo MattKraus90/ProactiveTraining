@@ -7,38 +7,42 @@
   <form method="post" action="{% url 'mainTask' page=page_number %}" id="myForm">
     {% csrf_token %}
     <input type="hidden" name="page" value="{{ page_number }}">
-    <input type="hidden" id="duration" name="duration" value="0">
     <div class="card m-4">
       <div class="card-body">
         <div class="container">
           <div class="row">
             <div class="col-sm">
               <div class="row justify-content-center">
-                <label class="form-label mt-3"><h5>{{ data.description }}</h5></label><br>
-                  {% for item in data.items %}
-                    <div class="col-md-4 mb-4 mt-3">
-                      <label for="{{ item.value }}">
-                        <div class="card" onclick="">
-                          <img class="card-img-top img-fluid custom-img" src="{% static item.path %}" alt="{{ item.value }}">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-1">
-                                <input class="form-check-input mt-1" type="radio" id="{{ item.value }}" name="{{ page_number }}" value="{{ item.value }}" required>
-                              </div>
-                              <div class="col-sm">
-                                <label class="form-check-label" for="{{ item.value }} style="white-space: pre-wrap;"">{{ item.name }}</label>
-                              </div>
-                            </div>
+                <label class="form-label mt-3">
+                  <h5>{{ data.description }}</h5>
+                </label><br>
+                {% for item in data.items %}
+                <div class="col-md-4 mb-4 mt-3">
+                  <label for="{{ item.value }}">
+                    <div class="card" onclick="">
+                      <img class="card-img-top img-fluid custom-img" src="{% static item.path %}"
+                        alt="{{ item.value }}">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-1">
+                            <input class="form-check-input mt-1" type="radio" id="{{ item.value }}"
+                              name="{{ page_number }}" value="{{ item.value }}" required>
                           </div>
-                          {% if item.characteristics != None %}
-                            <div class="card-body">
-                              <label class="form-label" for="{{ item.value }}">{{ item.characteristics }}</label>
-                            </div>
-                          {% endif %}
+                          <div class="col-sm">
+                            <label class="form-check-label" for="{{ item.value }} style=" white-space: pre-wrap;>
+                              {{ item.name }}</label>
+                          </div>
                         </div>
-                      </label>
+                      </div>
+                      {% if item.characteristics != None %}
+                      <div class="card-body">
+                        <label class="form-label" for="{{ item.value }}">{{ item.characteristics }}</label>
+                      </div>
+                      {% endif %}
                     </div>
-                  {% endfor %}
+                  </label>
+                </div>
+                {% endfor %}
               </div>
               <div class="row justify-content-center">
                 <div class="col mt-3 text-center">
@@ -79,7 +83,8 @@
                   </div>
                   {% comment %} Suggestion Modal {% endcomment %}
                   <input type="hidden" id="sugg_req_clicked" name="sugg_req_clicked" value="0">
-                  <button type="button" class="btn btn-primary" onclick="openSuggModal()" id="sugg_req">Vorschlag</button>
+                  <button type="button" class="btn btn-primary" onclick="openSuggModal()"
+                    id="sugg_req">Vorschlag</button>
                   <div class="modal fade" tabindex="-1" role="dialog" id="suggModal">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
@@ -89,16 +94,18 @@
                         </div>
                         <div class="modal-body" id="helpMessage">
                           <figure class="figure">
-                            <img class="card-img-top img-fluid custom-img" src="{% static option_path %}" alt="{{ option_path }}">
+                            <img class="card-img-top img-fluid custom-img" src="{% static option_path %}"
+                              alt="{{ option_path }}">
                             <figcaption class="figure-caption text-center mt-1">{{ option_name }}</figcaption>
-                          </figure>    
+                          </figure>
                           <div class="text-center">
                             {{ explanation }}
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button class="btn btn-danger" data-dismiss="modal">Nein</button>
-                          <button class="btn btn-success" onclick="chooseRadioAndSubmit()" data-dismiss="modal">Ja</button>
+                          <button class="btn btn-success" onclick="chooseRadioAndSubmit()" data-dismiss="modal"
+                            id="sugg_fwd_btn" disabled>Ja</button>
                         </div>
                       </div>
                     </div>
@@ -112,9 +119,10 @@
                         </div>
                         <div class="modal-body" id="helpMessage">
                           <figure class="figure">
-                            <img class="card-img-top img-fluid custom-img" src="{% static option_path %}" alt="{{ option_path }}">
+                            <img class="card-img-top img-fluid custom-img" src="{% static option_path %}"
+                              alt="{{ option_path }}">
                             <figcaption class="figure-caption text-center mt-1">{{ option_name }}</figcaption>
-                          </figure>    
+                          </figure>
                           <div class="text-center">
                             {{ explanation }}
                           </div>
@@ -124,10 +132,10 @@
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <div class="col mt-3 text-center">
-                  <button class="btn btn-success" type="submit">Weiter</button>
+                  <button class="btn btn-success" type="submit" id="fwd_btn" disabled>20</button>
                 </div>
               </div>
             </div>
@@ -138,34 +146,57 @@
   </form>
 </div>
 <script>
-  // get the duration spent on the page
+  // Prevent from submitting with enter
   document.addEventListener("DOMContentLoaded", () => {
     let start;
-  
+
     const form = document.getElementById('myForm');
-    form.addEventListener('submit', function(event) {
-      // prevent the form from submitting
-      event.preventDefault();
-  
-      // set the value of the duration input
-      const end = new Date().getTime();
-      const totalTime = (end - start) / 1000
-      document.getElementById("duration").value = totalTime;
-  
-      // submit the form
-      form.submit();
+    form.addEventListener('keydown', function (event) {
+      // Check if the Enter key is pressed
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission behavior
+      }
     });
-  
-    start = new Date().getTime();
   });
 
+  // Function to wait 20 seconds before submitting
+  function startCountdown() {
+    const fwd_btn = document.getElementById('fwd_btn');
+    const sugg_fwd_btn = document.getElementById('sugg_fwd_btn');
+    let remainingTime = 20;
+
+    // Update the button text every second
+    const countdownInterval = setInterval(() => {
+      if (remainingTime === 0) {
+        fwd_btn.innerText = 'Weiter';
+        fwd_btn.disabled = false;
+        sugg_fwd_btn.innerText = 'Ja';
+        sugg_fwd_btn.disabled = false;
+        clearInterval(countdownInterval);
+        showModal(JSON.parse('{{ input_array|safe }}'));
+      } else if (remainingTime == 10) {
+        window.scrollTo(0, document.body.scrollHeight);
+        fwd_btn.innerText = remainingTime;
+        sugg_fwd_btn.innerText = remainingTime;
+      } else {
+        fwd_btn.innerText = remainingTime;
+        sugg_fwd_btn.innerText = remainingTime;
+      }
+
+      remainingTime--;
+    }, 1000);
+  }
+
+  // Execute the countdown when the page is fully loaded
+  window.addEventListener('load', startCountdown);
+
   // check if help was requested
-  document.getElementById("help_req").addEventListener("click", function() {
+  document.getElementById("help_req").addEventListener("click", function () {
     document.getElementById("help_req_clicked").value = 1;
   });
   // same for suggestion
-  document.getElementById("sugg_req").addEventListener("click", function() {
-      document.getElementById("sugg_req_clicked").value = 1;
+  document.getElementById("sugg_req").addEventListener("click", function () {
+    document.getElementById("sugg_req_clicked").value = 1;
   });
 
   // funtion to show the help modal when help is requested
@@ -197,15 +228,5 @@
       throw new Error("Proactivity Array wrong");
     }
   }
-
-  // wait 1 sec to show modal
-  setTimeout(function() {
-    showModal(JSON.parse('{{ input_array|safe }}'));
-  }, 1000);
-
-  // wait 5 sec to scroll down automatically
-  setTimeout(function() {
-    window.scrollTo(0,document.body.scrollHeight);
-  }, 5000);
 </script>
 {% endblock content %}

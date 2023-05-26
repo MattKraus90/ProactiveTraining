@@ -19,12 +19,12 @@ PROACTIVITY_OPTIONS = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 class ProactivityAgent:
     _instances = {}
 
-    def __new__(cls, user_hash, stragedy):
+    def __new__(cls, user_hash, strategy):
         if user_hash not in cls._instances:
             instance = super().__new__(cls)
             cls._instances[user_hash] = instance
             instance.user_hash = user_hash
-            instance.stragedy = stragedy
+            instance.strategy = strategy
             instance.last_trust = 0
 
             instance.config = ConfigParser()
@@ -122,17 +122,17 @@ class ProactivityAgent:
         self.last_trust = self.data_temp.loc[(0, 'preTrust')]
 
     def return_proactivity(self, step_number):
-        if self.stragedy == 'Just_one':
+        if type(self.strategy) is dict and list(self.strategy.keys())[0] == 'Just_one':
             self.proactivity = proactivity_text_to_encoding(
-                self.config['Proactivity_Strategy']['just_one'])
-        elif self.stragedy == 'Random':
+                self.strategy['Just_one'])
+        elif self.strategy == 'Random':
             self.proactivity = random.choice(PROACTIVITY_OPTIONS)
-        elif self.stragedy == 'Strategy_1':
+        elif self.strategy == 'Strategy_1':
             if step_number in self.strategy_1_list:
                 self.proactivity = random.choice(PROACTIVITY_OPTIONS)
             else:
                 self.proactivity = [1, 0, 0, 0]
-        elif self.stragedy == 'Strategy_Adaptive':
+        elif self.strategy == 'Strategy_Adaptive':
             if self.last_trust == 5:
                 self.proactivity = [0, 0, 0, 1]
             elif self.last_trust == 4:
@@ -141,7 +141,7 @@ class ProactivityAgent:
                 self.proactivity = [0, 1, 0, 0]
             else:
                 self.proactivity = [1, 0, 0, 0]
-        elif self.stragedy == 'Strategy_agent':
+        elif self.strategy == 'Strategy_agent':
             if step_number == 1:
                 previous_duration = 35.76623376623377  # overall mean
                 previous_points = 14.35064935064935  # overall mean
@@ -170,9 +170,6 @@ class ProactivityAgent:
         else:
             raise Exception('Please choose a valid proactivity strategy.')
 
-        print("_________________________________________________")
-        print(self._instances)
-        print("_________________________________________________")
         return self.proactivity
 
     def calc_data(self, step_number, help_req, sugg_req, duration, points):

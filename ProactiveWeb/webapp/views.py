@@ -1,5 +1,6 @@
 import hashlib
 import uuid
+from datetime import datetime
 
 from django.shortcuts import redirect, render
 from proactivityAgent.proactivity_agent import ProactivityAgent
@@ -8,10 +9,11 @@ from webapp.utils import (find_best_option, random_strategy, read_json,
 
 
 def index(request):
-    stragedy = random_strategy()
-    request.session['user_hash'] = hashlib.sha256(
-        str(uuid.uuid4()).encode()).hexdigest()
-    request.session['stragedy'] = stragedy
+    strategy = random_strategy()
+    user_hash = hashlib.sha256(str(uuid.uuid4()).encode()).hexdigest()
+
+    request.session['strategy'] = strategy
+    request.session['user_hash'] = user_hash
 
     conv_data = read_json('conversation.json')
     context = {
@@ -23,17 +25,17 @@ def index(request):
 
 def personalData(request):
     user_hash = request.session.get('user_hash')
-    stragedy = request.session.get('stragedy')
+    strategy = request.session.get('strategy')
 
     if request.method == 'POST':
         form_data = dict(request.POST.items())
         form_data.pop("csrfmiddlewaretoken")
         data = {}
         data['personalData'] = form_data
-        data['strategy'] = stragedy
+        data['strategy'] = strategy
         write_json(f"data_{user_hash}.json", data)
 
-        proactivity_agent = ProactivityAgent(user_hash, stragedy)
+        proactivity_agent = ProactivityAgent(user_hash, strategy)
         proactivity_agent.get_pers_data(form_data)
         print(proactivity_agent.pers_data)
 
@@ -62,25 +64,29 @@ def personalData(request):
 
 def mainTask(request, page):
     user_hash = request.session.get('user_hash')
-    stragedy = request.session.get('stragedy')
-    proactivity_agent = ProactivityAgent(user_hash, stragedy)
+    strategy = request.session.get('strategy')
+    proactivity_agent = ProactivityAgent(user_hash, strategy)
 
     data = read_json(f"data_{user_hash}.json")
     plan_data = read_json("databasePlanning.json")
     priorities = read_json("priorityPlanning.json")
 
     if request.method == 'POST':
+        timestamp1 = request.session.get('timestamp1')
+        timestamp1 = datetime.fromisoformat(timestamp1)
+        timestamp2 = datetime.now()
+        time_difference = timestamp2 - timestamp1
+        duration = time_difference.total_seconds()
+
         form_data = dict(request.POST.items())
 
         help_req = int(form_data['help_req_clicked'])
         sugg_req = int(form_data['sugg_req_clicked'])
-        duration = float(form_data['duration'])
 
         form_data.pop("csrfmiddlewaretoken")
         form_data.pop("page")
         form_data.pop("help_req_clicked")
         form_data.pop("sugg_req_clicked")
-        form_data.pop("duration")
 
         if page == 1:
             data['mainTask'] = {}
@@ -94,9 +100,8 @@ def mainTask(request, page):
             data['mainTask']['points'][str(page)] = update_points(data, priorities[str(
                 page)]['dependencies'], data['mainTask'][str(page)], priorities[str(page)]['dependant'])
 
-        # TODO am ende mindestdauer pro seite auf 20s setzen und duration+20 mit duration ersetzen
         proactivity_agent.calc_data(
-            page, help_req, sugg_req, duration+20, data['mainTask']['points'][str(page)])
+            page, help_req, sugg_req, duration, data['mainTask']['points'][str(page)])
 
         write_json(f"data_{user_hash}.json", data)
 
@@ -128,7 +133,7 @@ def mainTask(request, page):
         'option_name': option_name,
         'option_path': option_path
     }
-
+    request.session['timestamp1'] = datetime.now().isoformat()
     return render(request, 'mainTask.html', context)
 
 
@@ -140,7 +145,8 @@ def rate(request, page):
         form_data = dict(request.POST.items())
         form_data.pop("csrfmiddlewaretoken")
 
-        data['rate'] = {}
+        if page == 3:
+            data['rate'] = {}
         data['rate'][str(page)] = {}
         data['rate'][str(page)].update(form_data)
         write_json(f"data_{user_hash}.json", data)
@@ -181,8 +187,8 @@ def rate(request, page):
 
 def ending(request):
     user_hash = request.session.get('user_hash')
-    stragedy = request.session.get('stragedy')
-    proactivity_agent = ProactivityAgent(user_hash, stragedy)
+    strategy = request.session.get('strategy')
+    proactivity_agent = ProactivityAgent(user_hash, strategy)
 
     data = read_json(f"data_{user_hash}.json")
     plan_data = read_json("databasePlanning.json")
