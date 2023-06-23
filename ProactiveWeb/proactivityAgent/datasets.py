@@ -6,11 +6,7 @@ DIRECTORY_PATH = os.path.dirname(__file__)
 
 
 class GenDatasets:
-    def __init__(self):# Punkteberechnung:
-#         meine seite / java seite
-#     1A: 180/210     / 190/210
-#     1B: 200/210     / 190/210
-#     1C: 190/210     / 200/210
+    def __init__(self):
         self.df_whole = pd.read_csv(os.path.join(
             DIRECTORY_PATH, 'data/dataSummary.csv'))
         self.df_whole = self.df_whole.reindex(

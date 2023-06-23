@@ -17,9 +17,34 @@ PROACTIVITY_OPTIONS = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
 
 class ProactivityAgent:
+    """
+    ProactivityAgent class represents an agent that manages proactivity and trust estimation for a user
+
+    Args:
+        user_hash (str): unique identifier for the user
+        strategy (str or dict): strategy used by the agent
+
+    Attributes:
+        user_hash (str): unique identifier for the user
+        strategy (str or dict): The strategy used by the agent
+        last_trust (int): last estimated trust value for the user
+        config (ConfigParser): Configuration parser object
+        pers_data_obj (PersonalDetails): PersonalDetails object to handle user's personal details
+        step_data_obj (StepData): StepData object to handle step data
+        input_vector_obj (CreateDataVector): CreateDataVector object to create input vectors
+        pers_data (dict): User's personal data
+        step_data (dict): Step data for the current step
+        data (DataFrame): Main data frame to store user's data
+        data_temp (DataFrame): Temporary data frame for the current step
+        trust_estimator_model (SVM model): Trust estimator model for trust estimation
+        complexity_list (numpy array): Array containing complexity values for each step
+        proactivity_agent_model (DQN agent): DQN agent model for proactivity selection
+        strategy_1_list (list): List of step numbers for Strategy_1 strategy
+    """
     _instances = {}
 
     def __new__(cls, user_hash, strategy):
+        # Creates a new instance of the ProactivityAgent class if it doesn't already exist for the given user_hash
         if user_hash not in cls._instances:
             instance = super().__new__(cls)
             cls._instances[user_hash] = instance
@@ -56,11 +81,13 @@ class ProactivityAgent:
 
     @classmethod
     def remove_instance(cls, user_hash):
+        # Removes the instance of ProactivityAgent associated with the given user_hash
         if user_hash in cls._instances:
             instance = cls._instances.pop(user_hash)
             del instance
 
     def __get_strategy_1_list(self):
+        # Returns the list of step numbers for the Strategy_1 strategy
         if self.config['Proactivity_Strategy']['Strategy_1']:
             proactivity_steps = [np.random.choice([1, 2, 3]),
                                  np.random.choice([4, 5, 6]),
@@ -72,6 +99,7 @@ class ProactivityAgent:
         return proactivity_steps
 
     def __get_step_data(self):
+        # Retrieves and stores step data for the current step
         self.step_data_obj.set_step_data(
             self.step_number, self.proactivity, self.help_req, self.sugg_req, self.duration)
         self.step_data_obj.get_step_data(self.pers_data)
@@ -92,9 +120,11 @@ class ProactivityAgent:
                        str(self.step_number)] = [self.step_data['difficulty']]
 
     def __get_points_data(self):
+        # Stores the points data for the current step
         self.data_temp['points' + str(self.step_number)] = self.points
 
     def __estimate_trust(self, step_number):
+        # Estimates the trust value for the current step
         self.input_vector_obj.load_current_dataframe(self.data_temp)
         input_vector = self.input_vector_obj.create_vector(step_number)
         result = self.trust_estimator_model.predict([input_vector])
@@ -102,6 +132,7 @@ class ProactivityAgent:
         self.data_temp['trust' + str(step_number)] = int(result[0])
 
     def get_pers_data(self, pers_data_dict):
+        # Sets the user's personal data
         self.pers_data = self.pers_data_obj.generate_person_data(
             pers_data_dict)
 
@@ -122,6 +153,7 @@ class ProactivityAgent:
         self.last_trust = self.data_temp.loc[(0, 'preTrust')]
 
     def return_proactivity(self, step_number):
+        # Returns the proactivity for the given step number based on the selected strategy
         if type(self.strategy) is dict and list(self.strategy.keys())[0] == 'Just_one':
             self.proactivity = proactivity_text_to_encoding(
                 self.strategy['Just_one'])
@@ -173,6 +205,7 @@ class ProactivityAgent:
         return self.proactivity
 
     def calc_data(self, step_number, help_req, sugg_req, duration, points):
+        # Calculates and stores the data for the current step
         self.step_number = step_number
         self.help_req = help_req
         self.sugg_req = sugg_req

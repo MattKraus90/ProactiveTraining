@@ -9,6 +9,13 @@ from webapp.utils import (find_best_option, random_strategy, read_json,
 
 
 def index(request):
+    """
+    Renders the index page of the web application
+
+    - Chooses a random strategy for the user
+    - Generates a unique user hash using UUID and SHA-256 hashing algorithm
+    - Stores the strategy and user hash in the session
+    """
     strategy = random_strategy()
     user_hash = hashlib.sha256(str(uuid.uuid4()).encode()).hexdigest()
 
@@ -24,6 +31,17 @@ def index(request):
 
 
 def personalData(request):
+    """
+    Handles the personal data submission form
+
+    - GET:
+        - Reads conversation data from 'conversation.json' file
+        - Passes the conversation data as context to the 'personalData.html' template
+    - POST:
+        - Extracts the form data from the request.POST object
+        - Creates a JSON file for the user containing personal data and the strategy
+        - Creates an instance of the ProactivityAgent class with the user_hash and strategy
+    """
     user_hash = request.session.get('user_hash')
     strategy = request.session.get('strategy')
 
@@ -63,6 +81,23 @@ def personalData(request):
 
 
 def mainTask(request, page):
+    """
+    Handles the main task
+
+    - Gets the right instance of the ProactivityAgent by the user_hash and strategy
+    - GET:
+        - After the main task, redirects the user to the 'ending' page
+        - Retrieves the action from the ProactivityAgent for the upcoming task
+        - Finds the best option and explanation for the upcoming page
+        - Stores the current timestamp in the session
+    - POST:
+        - Calculates time needed for the last task
+        - Extracts the choices made by user
+        - Calculates the points for the current task
+        - Calculates Agent data
+        - Updates the user JSON file
+        - If the current page is in [3, 6, 9, 12], redirects the user to the 'rate' page for rating
+    """
     user_hash = request.session.get('user_hash')
     strategy = request.session.get('strategy')
     proactivity_agent = ProactivityAgent(user_hash, strategy)
@@ -138,6 +173,16 @@ def mainTask(request, page):
 
 
 def rate(request, page):
+    """
+    Handles the rating form submission and performs necessary actions.
+
+    - GET:
+        - Constructs the context dictionary with the necessary data for rendering the template
+        - Renders the 'rate.html' template with the context
+    - POST:
+        - Extracts the choices made by user
+        - Updates the user JSON file with the form data
+    """
     user_hash = request.session.get('user_hash')
     data = read_json(f"data_{user_hash}.json")
 
@@ -186,6 +231,13 @@ def rate(request, page):
 
 
 def ending(request):
+    """
+    Renders the ending page
+
+    - Constructs the contex_data dictionary with information about each task and its corresponding points and image path
+    - Appends the current user data to the general user_data JSON file
+    - Removes the current user JSON file
+    """
     user_hash = request.session.get('user_hash')
     strategy = request.session.get('strategy')
     proactivity_agent = ProactivityAgent(user_hash, strategy)

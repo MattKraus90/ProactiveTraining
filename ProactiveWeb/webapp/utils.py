@@ -4,6 +4,8 @@ import random
 
 from django.templatetags.static import static
 
+# file holds various utility functions for the app, such as calculating the points and creating the explanation
+
 
 def read_json(filename: str):
     path = static('json/' + filename)

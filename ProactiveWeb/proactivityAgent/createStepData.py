@@ -8,7 +8,23 @@ DIRECTORY_PATH = os.path.dirname(__file__)
 
 
 class StepData:
+    """
+    StepData class represents step data for a user
+
+    Attributes:
+        proactivity (list): proactivity values
+        step_number (str): step number
+        help_req (int): Help requested in last step
+        sugg_req (int): Suggestion requested in last step
+        duration (float): Duration of the last step
+        difficulty (float): Difficulty of the step
+        dist_parameter (dict): Distribution parameters
+        task_difficulties (dict): Task difficulties
+        step_data (dict): Dictionary containing step data
+    """
+
     def __init__(self):
+        # Initializes an instance of the StepData class
         self.proactivity = None
         self.step_number = None
         self.help_req = None
@@ -23,6 +39,7 @@ class StepData:
                           'step_number': '', 'pers_code': '000', 'used_values': {'com': '', 'pers_c': '000', 'step_number': 0}}
 
     def __load_dist_params(self):
+        # Loads distribution parameters from file
         try:
             file = open(os.path.join(DIRECTORY_PATH,
                         'data/dist_data.json'), 'r')
@@ -35,10 +52,12 @@ class StepData:
             self.dist_parameter = obj.dist_parameter
 
     def __load_task_difficulties(self):
+        # Loads task difficulties from file
         path = os.path.join(DIRECTORY_PATH, 'data/difficulties.json')
         self.task_difficulties = read_json(path)
 
     def __set_step_number(self, step_number):
+        # Sets the step number
         if step_number in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']:
             self.step_number = step_number
         else:
@@ -46,6 +65,7 @@ class StepData:
                 'Step number value has to be in the range of 1 to 12!')
 
     def __set_proactivity(self, proactivity):
+        # Sets the proactivity values
         if proactivity in [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]:
             self.proactivity = proactivity
             # [1, 0, 0, 0] = None
@@ -58,6 +78,7 @@ class StepData:
                 '(None, Notification, Suggestion, Intervention)')
 
     def __set_help_reqest(self, help_req):
+        # Sets the help request value
         if help_req == 0 or help_req == 1:
             self.help_req = help_req
         else:
@@ -67,6 +88,7 @@ class StepData:
             )
 
     def __set_sugg_reqest(self, sugg_req):
+        # Sets the suggestion request value
         if sugg_req == 0 or sugg_req == 1:
             self.help_req = sugg_req
         else:
@@ -76,6 +98,7 @@ class StepData:
             )
 
     def __set_duration(self, duration):
+        # Sets the duration of the step
         if duration >= 20.0:
             self.duration = duration
         else:
@@ -84,6 +107,7 @@ class StepData:
             )
 
     def __set_difficulty(self, step_number):
+        # Sets the difficulty of the step
         if step_number in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']:
             self.difficulty = self.task_difficulties[step_number]
         else:
@@ -92,6 +116,7 @@ class StepData:
 
     @staticmethod
     def __create_personality_code(pers_values):
+        # Creates the personality code based on personality values
         man_exp = pers_values['management experience']
         pre_trust = pers_values['preTrust']
         tech_aff = pers_values['technical affinity']
@@ -113,6 +138,7 @@ class StepData:
         return code
 
     def set_step_data(self, step_number, proactivity, help_req, sugg_req, duration):
+        # Sets the step data
         self.__set_step_number(str(step_number))
         self.__set_proactivity(proactivity)
         self.__set_help_reqest(help_req)
@@ -121,6 +147,7 @@ class StepData:
         self.__set_difficulty(str(step_number))
 
     def get_step_data(self, pers_vals):
+        # Retrieves the step data
         pers_code = self.__create_personality_code(pers_vals)
 
         self.step_data['pers_code'] = pers_code
