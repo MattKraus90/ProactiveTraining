@@ -1,0 +1,17 @@
+version: "3.1"
+
+stories:
+
+- story: email
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_askname
+  - intent: user_name
+    entities:
+    - name: "[YOURNAME]"
+  - action: utter_askemail
+  - intent: user_email
+    entities:
+    - email: "[abc@gmail.com]"
+  - action: action_email
